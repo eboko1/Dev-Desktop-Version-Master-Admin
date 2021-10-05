@@ -99,6 +99,7 @@ describe ('BaseTest|UA|CarBook', function(){
             .then(()=>{
                 cy.log('VIN авто');
                 cy.get('#vehicle_add_from_vin').type('MDHFBUK13U0107589');
+                cy.wait(2000)
             })
             .then(()=>{
                 cy.log('Рік авто');

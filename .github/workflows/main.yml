@@ -1,4 +1,4 @@
-name: Cypress Tests
+name: Base Tests
 on: [push]
 jobs:
   cypress-run:
@@ -8,7 +8,7 @@ jobs:
         uses: actions/checkout@v2
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Cypress run
+      - name: Base Tests
         uses: cypress-io/github-action@v2
         with:
           start: npm start
