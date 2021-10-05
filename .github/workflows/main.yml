@@ -1,7 +1,7 @@
 name: Base Tests
 on: [push]
 jobs:
-  cypress-run:
+  base-test-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
