@@ -1,20 +1,21 @@
-name: Base Tests
+name: Base Tests Chrome
 on: [push]
 jobs:
-  base-test-firefox-linux-run:
+  base-test-chrome-linux-run:
     # ubuntu-latest - Firefox, windows-latest - edge, ubuntu-20.04 -chrome
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: base-test-firefox-linux-run
+      - name: base-test-chrome-linux-run
         uses: cypress-io/github-action@v2
         with:
           start: npm start
           record: true
           # edge, firefox
+          browser: chrome
         env:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_SECRET_RECORD_KEY }}
