@@ -1,5 +1,9 @@
 name: Base Tests Chrome
-on: [push]
+#on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
   base-test-chrome-linux-run:
     # ubuntu-latest - Firefox, windows-latest - edge, ubuntu-20.04 -chrome
