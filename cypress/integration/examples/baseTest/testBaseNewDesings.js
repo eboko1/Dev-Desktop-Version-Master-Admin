@@ -17,12 +17,11 @@ var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
 var codeNZ =''
 
-///const idClient ='28813'
+//const idClient ='6941'
 
 
 describe ('BaseTest|UA|CarBook', function(){
   beforeEach('User LogIn ', () => {
-
     cy.visit(baseUrl)
     cy.get('#login.ant-input').type(Cypress.env('DevLogin'));  // ProdLogin     DevLogin      ProdLogin     //  TestSpecialistPassword
     cy.get('#password').type(Cypress.env('Password'));
@@ -213,6 +212,8 @@ describe ('BaseTest|UA|CarBook', function(){
       cy.log('Вибір Меню ремонти');
       cy.contains('Ремонти').click()
         .then(()=>{
+            cy.get('.ant-input-search > .ant-input').type(idClient)
+            cy.wait(2000);
             cy.get('.styles-m__ordernLink---T-qWz').first().click({ force: true });//Нові н/з
         })
         .then(()=>{
@@ -266,6 +267,8 @@ describe ('BaseTest|UA|CarBook', function(){
       cy.log('Вибір Меню ремонти');
       cy.contains('Ремонти').click();// select menu remont
       cy.wait(3000);
+      cy.get('.ant-input-search > .ant-input').type(idClient)
+      cy.wait(2000);
       cy.get('.styles-m__ordernLink---T-qWz').first().click({ force: true });
       cy.wait(5000);
       cy.get('.styles-m__modalWrap---3KcUv > .anticon').click();
@@ -285,6 +288,8 @@ describe ('BaseTest|UA|CarBook', function(){
         cy.visit(appointments);
         cy.get('.styles-m__logo---2zDPJ').click()
         cy.wait(3000);
+        cy.get('.ant-input-search > .ant-input').type(idClient)
+        cy.wait(2000);
         cy.log('Вибір Н/З');
         cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
         cy.wait(4000);
@@ -300,6 +305,8 @@ describe ('BaseTest|UA|CarBook', function(){
       cy.contains('Ремонти').first().click({ force: true })
         .then(()=>{
          // cy.get('.styles-m__ordernLink---T-qWz').invoke('attr', 'href').then( href => {cy.visit(baseUrl+href); });
+         cy.get('.ant-input-search > .ant-input').type(idClient)
+         cy.wait(2000);
          cy.get('.styles-m__ordernLink---T-qWz').first().click({ force: true });
          cy.url().should('include', '/order/')
         })
@@ -331,6 +338,8 @@ describe ('BaseTest|UA|CarBook', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
+            cy.get('.ant-input-search > .ant-input').type(idClient)
+            cy.wait(2000);
             cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
             cy.log('Вибір Запису');
         })
@@ -408,6 +417,8 @@ describe ('BaseTest|UA|CarBook', function(){
     cy.visit(approve);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)
+    cy.wait(2000);
     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
     cy.log('Вибір Запису');
     cy.wait(4000);
@@ -435,6 +446,8 @@ describe ('BaseTest|UA|CarBook', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
+            cy.get('.ant-input-search > .ant-input').type(idClient)
+            cy.wait(2000);
             cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
             cy.log('Вибір Запису');
         })
@@ -480,6 +493,8 @@ describe ('BaseTest|UA|CarBook', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
+            cy.get('.ant-input-search > .ant-input').type(idClient)
+            cy.wait(2000);
             cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
             cy.log('Вибір Запису');
         })
@@ -512,6 +527,8 @@ describe ('BaseTest|UA|CarBook', function(){
         cy.visit(approve)
         cy.get('.styles-m__logo---2zDPJ').click()
             .then(()=>{
+                cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+                cy.wait(2000);
                 cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
                 cy.log('Вибір Запису');
             })
@@ -539,6 +556,8 @@ it('13.Вкладка Роботи > Додавання Роботи ч/з Ко�
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
     .then(()=>{
+        cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+        cy.wait(2000);
         cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
         cy.log('Вибір Запису');
     })
@@ -563,6 +582,8 @@ it('13.Вкладка Роботи > Додавання Роботи ч/з Ко�
         cy.visit(approve)
         cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
+            cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+            cy.wait(2000);
             cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
             cy.log('Вибір Запису');
         })
@@ -590,6 +611,8 @@ it('13.Вкладка Роботи > Додавання Роботи ч/з Ко�
         cy.visit(approve)
         cy.get('.styles-m__logo---2zDPJ').click()
             .then(()=>{
+                cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+                cy.wait(2000);
                 cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
                 cy.log('Вибір Запису');
             })
@@ -626,6 +649,8 @@ it('13.Вкладка Роботи > Додавання Роботи ч/з Ко�
     cy.visit(approve);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
     cy.log('Вибір Запису');
     cy.wait(10000);
@@ -660,6 +685,8 @@ it('13.Вкладка Роботи > Додавання Роботи ч/з Ко�
     cy.visit(approve);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
     cy.log('Вкладка Запчастини');
     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(4)').click();
@@ -689,6 +716,8 @@ it('18. Вкладка Запчастини > Додавання ЗЧ через
   cy.visit(approve);
   cy.get('.styles-m__logo---2zDPJ').click()
   cy.wait(3000);
+  cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+  cy.wait(2000);
   cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
   cy.log('Вибір Запису');
   cy.wait(10000);
@@ -709,6 +738,8 @@ it('19. Вкладка Запчастини > Швидке редагуванн�
   cy.visit(approve);
   cy.get('.styles-m__logo---2zDPJ').click()
   cy.wait(3000);
+  cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+  cy.wait(2000);
   cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
   cy.log('Вибір Запису');
   cy.wait(10000);
@@ -760,6 +791,8 @@ it('21. Додавання нового Товару з НЗ в Довідник
     cy.visit(approve);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
     cy.log('Вкладка Запчастини');
     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(4)').click();
@@ -774,10 +807,7 @@ it('21. Додавання нового Товару з НЗ в Довідник
     cy.wait(2000);
     cy.get('.ant-modal-footer > div > .ant-btn-primary').last().click({force: true}) //ok
     cy.wait(3000);
-   // cy.log('Додавання Товару в Довідник Товарів (іконка +)');
-  //  cy.get(':nth-child(10) > div > .ant-btn').last().click()
-  //  cy.get('.ant-btn-primary').last().click({force: true}) //ok
-   });
+});
 
   it('22. Прихід від Постачальника', function(){
    ///// cy.get('.styles-m__logo---2zDPJ').click()
@@ -834,15 +864,17 @@ it('21. Додавання нового Товару з НЗ в Довідник
     cy.get('.styles-m__header---2z2EP').contains('Врах.').should('exist')
   });
 
-// //   it('23. Повернення Постачальнику', function(){
-// //     cy.get('.ant-menu-submenu-title').contains('Склад').click()
-// //     cy.wait(2000);
-// //   });
+//   it('23. Повернення Постачальнику', function(){
+//     cy.get('.ant-menu-submenu-title').contains('Склад').click()
+//     cy.wait(2000);
+//   });
 
   it('24.Узгодження замовлення', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
+            cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+            cy.wait(2000);
             cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
             cy.log('Вибір Н/З');
             cy.wait(5000);
@@ -868,6 +900,8 @@ it('21. Додавання нового Товару з НЗ в Довідник
     cy.get('.styles-m__logo---2zDPJ').click()
     .then(()=>{
         cy.log('Вибір Запису');
+        cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+        cy.wait(2000);
         cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
         cy.log('Вкладка Роботи');
         cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(3)').click();
@@ -891,6 +925,8 @@ it('26. Редагування Закупочної ціни / ПД Схвале
     cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
             cy.wait(3000);
+            cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+            cy.wait(2000);
             cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
             cy.log('Вибір Запису');
             cy.wait(1000);
@@ -916,6 +952,8 @@ it('27.Перевід у статус Ремонту', function(){
     cy.visit(approve);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
     cy.log('Вибір Н/З');
     cy.wait(4000);
@@ -931,6 +969,8 @@ it('28.Ремонт (Р)', function(){
   cy.visit(progress);
   cy.get('.styles-m__logo---2zDPJ').click()
   cy.wait(3000);
+  cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+  cy.wait(2000);
   cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
   cy.log('Вибір Н/З');
   cy.wait(4000);
@@ -964,6 +1004,8 @@ it('28.Ремонт (Р)', function(){
     cy.visit(progress);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(4000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
     cy.log('Вибір Н/З');
     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(1)').click();
@@ -989,6 +1031,8 @@ it('28.Ремонт (Р)', function(){
     cy.visit(success);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(4000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
     cy.log('Вибір Н/З');
     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(1)').click();
@@ -1003,6 +1047,8 @@ it('31.Завантаження НЗ для Клієнта', function(){
   cy.visit(success);
   cy.get('.styles-m__logo---2zDPJ').click()
   cy.wait(3000);
+  cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+  cy.wait(2000);
   cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
   cy.log('Вибір Н/З');
   cy.wait(4000);
@@ -1016,6 +1062,8 @@ it('32. Перевірка завантаженних файлів', function(){
   cy.visit(success);
   cy.get('.styles-m__logo---2zDPJ').click()
   cy.wait(3000);
+  cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+  cy.wait(2000);
   cy.get('a.styles-m__ordernLink---T-qWz').first().invoke('text')
         .then (text => {codeNZ = text;
         cy.log(codeNZ)
@@ -1032,6 +1080,8 @@ it('32. Перевірка завантаженних файлів', function(){
     cy.visit(success);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(4000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
     cy.log('Вибір Н/З');
     cy.wait(4000);
@@ -1050,6 +1100,8 @@ it('32. Перевірка завантаженних файлів', function(){
     cy.visit(success);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
     cy.log('Вибір Запису');
     cy.wait(4000);
@@ -1062,6 +1114,8 @@ it('32. Перевірка завантаженних файлів', function(){
     cy.visit(success);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
     cy.log('Вибір Запису');
     cy.wait(4000);
