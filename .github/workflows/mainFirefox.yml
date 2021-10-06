@@ -1,5 +1,5 @@
 name: Base Tests Firefox
-on: [push]
+on: [off]
 jobs:
   base-test-firefox-linux-run:
     # ubuntu-latest - Firefox, windows-latest - edge, ubuntu-20.04 -chrome
