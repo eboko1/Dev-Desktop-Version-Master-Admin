@@ -1,7 +1,8 @@
 name: Base Tests
+#off
 on: [push]
 jobs:
-  base-test-firefox-linux-run:
+  base-test-electron-linux-run:
     # ubuntu-latest - Firefox, windows-latest - edge, ubuntu-20.04 -chrome
     runs-on: ubuntu-latest
     steps:
@@ -9,7 +10,7 @@ jobs:
         uses: actions/checkout@v2
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: base-test-firefox-linux-run
+      - name: base-test-electron-linux-run
         uses: cypress-io/github-action@v2
         with:
           start: npm start
