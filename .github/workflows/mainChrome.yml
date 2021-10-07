@@ -3,7 +3,14 @@ name: Base Tests Chrome
 on:
   push:
     branches:
-      - test
+      - test_specialist
+      - dev_specialist
+      - prod_specialist
+
+      - test_master
+      - dev_master
+      - prod_master
+    
 jobs:
   base-test-chrome-linux-run:
     # ubuntu-latest - Firefox, windows-latest - edge, ubuntu-20.04 -chrome

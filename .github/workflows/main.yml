@@ -1,9 +1,20 @@
 name: Base Tests
 #off
-on: [push]
+on:
+  push:
+    branches:
+      - main
+      - test_specialist
+      - test_master
+
+      - dev_specialist    
+      - dev_master
+      
+      - prod_specialist
+      - prod_master
 jobs:
 
-  base-test-electron-linux-run:
+  base-test-master-admin-elec-linux-run:
     # ubuntu-latest - Firefox, windows-latest - edge, ubuntu-20.04 -chrome
     runs-on: ubuntu-latest
     steps:
@@ -11,7 +22,7 @@ jobs:
         uses: actions/checkout@v2
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: base-test-electron-linux-run
+      - name:  base-test-master-admin-elec-linux-run
         uses: cypress-io/github-action@v2
         with:
           start: npm start

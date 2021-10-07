@@ -12,19 +12,19 @@ const cancel = 'https://'+url+'my.carbook.pro/orders/cancel';
 
 
 var date = new Date();
-const idClient =''+date.getDate()+date.getMonth()+date.getMinutes();
+//const idClient =''+date.getDate()+date.getMonth()+date.getMinutes();
 var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
 var codeNZ =''
 
-//const idClient ='6918'
+const idClient ='7927'
 
 
 describe ('BaseTest|UA|CarBook', function(){
   beforeEach('User LogIn ', () => {
     cy.visit(baseUrl)
-    cy.get('#login.ant-input').type(Cypress.env('DevLogin'));  // ProdLogin     DevLogin      ProdLogin     //  TestSpecialistPassword
-    cy.get('#password').type(Cypress.env('Password'));
+    cy.get('#login.ant-input').type(Cypress.env('DevSpecialistLogin')); 
+    cy.get('#password').type(Cypress.env('DevSpecialistPassword')); 
     cy.get('button').click()
     cy.intercept('GET', baseUrl+'/dashboard')
     cy.get('.styles-m__title---Nwr2X').contains('Календар Завантаження');
@@ -150,42 +150,10 @@ describe ('BaseTest|UA|CarBook', function(){
            cy.get('.ant-btn-primary').contains('Додати').click({force: true} )
            cy.wait(3000)
         })
-       // cy.pause()
     });
 
-  it('3.Редагування мобільного номера для клієнта:'+idClient, function(){
- //////  cy.get('.styles-m__logo---2zDPJ').click()
-    cy.get(':nth-child(2) > .ant-menu-submenu-title').click()
-    cy.contains('Клієнти').click()
-      .then(()=>{
-          cy.wait(5000)
-          cy.log('Пошук клієнта');
-          cy.get('.ant-input').last().type('БазовийКлієнт'+idClient)  //
-          cy.wait(5000)
-
-      })
-      .then(()=>{
-        cy.get('.styles-m__clientLink---1JZdU').first().click()
-        cy.wait(2000)
-      })
-      .then(()=>{
-        cy.get('.ant-input-number-input').eq(1).focus().clear('0').type('0683781977')
-        cy.wait(2000)
-       // cy.get('.ant-input-number-input').eq(1).focus().clear().type('0683781977')
-      })
-      .then(()=>{
-        cy.get('.ant-modal-confirm-title').should('exist');
-        cy.get('.ant-modal-confirm-btns > .ant-btn').click()
-        cy.wait(2000)
-        cy.get('.styles-m__editClientForm---2hdWi > .ant-btn').click()
-      })
-      .then(()=>{
-        cy.wait(5000)
-      })
-    })
-
-    it('4.Додати Н/З, підтягування клієнта через пошук, клієнт: '+idClient, function(){
-    //// cy.get('.styles-m__logo---2zDPJ').click()
+  
+    it('3.Додати Н/З, підтягування клієнта через пошук, клієнт: '+idClient, function(){
         cy.contains('Ремонти').click()
           .then(()=>{
               cy.log('Вибір Меню ремонти');
@@ -207,8 +175,7 @@ describe ('BaseTest|UA|CarBook', function(){
           })
     });
 
-  it('5.Редагування н/з та додавання Поста, Механіка, Готівки, Реквізити STO, Пробіг', function(){
-     //// cy.get('.styles-m__logo---2zDPJ').click()
+  it('Редагування н/з та додавання Поста, Механіка, Готівки, Реквізити STO, Пробіг', function(){
       cy.log('Вибір Меню ремонти');
       cy.contains('Ремонти').click()
         .then(()=>{
@@ -262,29 +229,7 @@ describe ('BaseTest|UA|CarBook', function(){
         //cy.pause()
   });
 
-  it('6.Вибір Локації', function(){
-     ////// cy.get('.styles-m__logo---2zDPJ').click()
-      cy.log('Вибір Меню ремонти');
-      cy.contains('Ремонти').click();// select menu remont
-      cy.wait(3000);
-      cy.get('.ant-input-search > .ant-input').type(idClient)
-      cy.wait(2000);
-      cy.get('.styles-m__ordernLink---T-qWz').first().click({ force: true });
-      cy.wait(5000);
-      cy.get('.styles-m__modalWrap---3KcUv > .anticon').click();
-      cy.wait(1000);
-      cy.log('Вибір Локації з Н/З');
-      cy.wait(2000);
-      cy.get('.styles-m__locationWrapper---eCnDV > .ant-select > .ant-select-selection> :nth-child(2)').first().click({ force: true });
-     //// cy.wait(2000);
-     /// cy.get('.ant-select-dropdown-menu-item-active').click();
-      cy.wait(3000);
-      cy.get('.styles-m__modalButton---zblVE > .ant-btn').click();// кнопка Прийняти модалка Прийняття авто на СТО
-      cy.log('Завантаження АКТУ прийому передачі');
-      cy.wait(5000);
-  });
-
-    it('7.Перевірка Інфо по автомобілю ', function(){
+it('Перевірка Інфо по автомобілю ', function(){
         cy.visit(appointments);
         cy.get('.styles-m__logo---2zDPJ').click()
         cy.wait(3000);
@@ -299,12 +244,10 @@ describe ('BaseTest|UA|CarBook', function(){
         cy.get('.styles-m__tableHeader---1i3oL').contains('Спецификации масел и технических жидкостей')
     });
 
-  it('8.Перевід у статус Запис', function(){
-    /////  cy.get('.styles-m__logo---2zDPJ').click()
+  it('Перевід у статус Запис', function(){
       cy.log('Вибір Меню ремонти'+ cy.url());
       cy.contains('Ремонти').first().click({ force: true })
         .then(()=>{
-         // cy.get('.styles-m__ordernLink---T-qWz').invoke('attr', 'href').then( href => {cy.visit(baseUrl+href); });
          cy.get('.ant-input-search > .ant-input').type(idClient)
          cy.wait(2000);
          cy.get('.styles-m__ordernLink---T-qWz').first().click({ force: true });
@@ -334,7 +277,7 @@ describe ('BaseTest|UA|CarBook', function(){
         })
   });
 
-  it('9.Створення Діагностики', function(){
+  it('Створення Діагностики', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
@@ -404,16 +347,12 @@ describe ('BaseTest|UA|CarBook', function(){
             cy.get('button').contains('Завершити діагностику').click({force: true});
         })
         .then(()=>{
-           //// cy.get('.anticon-save').click() // зберегти картку
-        })
-        .then(()=>{
             cy.log('Процес Збереження н/з ');
             cy.wait(2000)
         })
-       // cy.pause()
   });
 
-  it('10.Редагування ціни для доданої Роботи з діагностики', function(){
+  it('Редагування ціни для доданої Роботи з діагностики', function(){
     cy.visit(approve);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
@@ -435,14 +374,14 @@ describe ('BaseTest|UA|CarBook', function(){
     cy.log('Встановлення знижки на роботи');
     cy.get('#servicesDiscount').clear().type('20');
     cy.wait(2000);
-    cy.get('.styles-m__servicesMarkup---3myJY > .ant-input-number > .ant-input-number-input-wrap > .ant-input-number-input').clear().type('120');
-    cy.wait(1000);
-    cy.get('.styles-m__headerContorls---2pU_V > .anticon-save').click() // зберегти картку
+    // // // cy.get('.styles-m__servicesMarkup---3myJY > .ant-input-number > .ant-input-number-input-wrap > .ant-input-number-input').clear().type('120');
+    // // // cy.wait(1000);
+    cy.get('.styles-m__headerContorls---2pU_V > .anticon-save').first().click({force: true}) // зберегти картку
     cy.log('Процес Збереження н/з ');
     cy.wait(5000);
   });
 
-  it('11.Додавання Робіт через групи Товарів', function(){
+  it('Додавання Робіт через групи Товарів', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
@@ -489,7 +428,7 @@ describe ('BaseTest|UA|CarBook', function(){
         })
   })
 
-  it('12.Додавання Робіт через поле Робіт', function(){
+  it('Додавання Робіт через поле Робіт', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
@@ -523,7 +462,7 @@ describe ('BaseTest|UA|CarBook', function(){
             // зробити перевірку
     })
 
-    it('12.1 Додавання Робіт повторно', function(){
+    it('Додавання Роботи', function(){
         cy.visit(approve)
         cy.get('.styles-m__logo---2zDPJ').click()
             .then(()=>{
@@ -552,7 +491,7 @@ describe ('BaseTest|UA|CarBook', function(){
             })
         })
 
-it('13.Вкладка Роботи > Додавання Роботи ч/з Комплекси', function(){
+it('Вкладка Роботи > Додавання Роботи ч/з Комплекси', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
     .then(()=>{
@@ -578,7 +517,7 @@ it('13.Вкладка Роботи > Додавання Роботи ч/з Ко�
     })
   });
 
-    it('14.Відображення механіка в табці Роботи  ', function(){
+    it('Відображення механіка в табці Роботи  ', function(){
         cy.visit(approve)
         cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
@@ -603,11 +542,10 @@ it('13.Вкладка Роботи > Додавання Роботи ч/з Ко�
             cy.wait(1000)
             cy.log('Механік // + роботи з модалки Комплекси');
             cy.get('[data-row-key="3"] > :nth-child(6) > .ant-select > .ant-select-selection').contains('Механік').should('exist')
-
         })
     })
 
-    it('15.Додавання Запчастин ч/з Групу ЗЧ', function(){
+    it('Додавання Запчастин ч/з Групу ЗЧ', function(){
         cy.visit(approve)
         cy.get('.styles-m__logo---2zDPJ').click()
             .then(()=>{
@@ -645,7 +583,7 @@ it('13.Вкладка Роботи > Додавання Роботи ч/з Ко�
             })
         })
 
-  it('16.Вкладка Запчастини > Пряме редагування', function(){
+  it('Вкладка Запчастини > Пряме редагування', function(){
     cy.visit(approve);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
@@ -681,7 +619,7 @@ it('13.Вкладка Роботи > Додавання Роботи ч/з Ко�
     cy.wait(3000);
   });
 
-  it('17.Вкладка Запчастини > Додавання ЗЧ по VIN', function(){
+  it('Вкладка Запчастини > Додавання ЗЧ по VIN', function(){
     cy.visit(approve);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
@@ -712,7 +650,7 @@ it('13.Вкладка Роботи > Додавання Роботи ч/з Ко�
     cy.wait(3000);
   });
 
-it('18. Вкладка Запчастини > Додавання ЗЧ через ІНФО по автомобілю', function(){
+it('Вкладка Запчастини > Додавання ЗЧ через ІНФО по автомобілю', function(){
   cy.visit(approve);
   cy.get('.styles-m__logo---2zDPJ').click()
   cy.wait(3000);
@@ -734,7 +672,7 @@ it('18. Вкладка Запчастини > Додавання ЗЧ через
   cy.wait(3000);
 });
 
-it('19. Вкладка Запчастини > Швидке редагування запчастин', function(){
+it('Вкладка Запчастини > Швидке редагування запчастин', function(){
   cy.visit(approve);
   cy.get('.styles-m__logo---2zDPJ').click()
   cy.wait(3000);
@@ -763,8 +701,7 @@ it('19. Вкладка Запчастини > Швидке редагуванн�
   cy.wait(5000);
 });
 
-it('20. Додавання Товару через модалку Товару', function(){
-   ///// cy.get('.styles-m__logo---2zDPJ').click()
+it('Додавання Товару через модалку Товару', function(){
     cy.get('.ant-menu-submenu-title').contains('Довідник').click()
     cy.wait(2000);
     cy.get('.ant-menu-submenu').contains('Довідники та налаштування').click()
@@ -787,7 +724,7 @@ it('20. Додавання Товару через модалку Товару',
     cy.get('.ant-table-content td').first().should('exist')
   });
 
-it('21. Додавання нового Товару з НЗ в Довідник Товарів', function(){
+it('Додавання нового Товару з НЗ в Довідник Товарів', function(){
     cy.visit(approve);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
@@ -809,8 +746,7 @@ it('21. Додавання нового Товару з НЗ в Довідник
     cy.wait(3000);
 });
 
-  it('22. Прихід від Постачальника', function(){
-   ///// cy.get('.styles-m__logo---2zDPJ').click()
+  it('Прихід від Постачальника', function(){
     cy.get('.ant-menu-submenu-title').contains('Склад').click()
     cy.wait(2000);
     cy.get('.ant-menu-submenu').contains('Приходи на склад').click()
@@ -864,12 +800,7 @@ it('21. Додавання нового Товару з НЗ в Довідник
     cy.get('.styles-m__header---2z2EP').contains('Врах.').should('exist')
   });
 
-//   it('23. Повернення Постачальнику', function(){
-//     cy.get('.ant-menu-submenu-title').contains('Склад').click()
-//     cy.wait(2000);
-//   });
-
-  it('24.Узгодження замовлення', function(){
+  it('Узгодження замовлення', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
@@ -895,7 +826,7 @@ it('21. Додавання нового Товару з НЗ в Довідник
         })
   });
 
-  it('25.Редаг. Закуп. ціни / ПД Схвалено в табці Роботи', function(){
+  it('Редаг. Закуп. ціни / ПД Схвалено в табці Роботи', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
     .then(()=>{
@@ -920,7 +851,7 @@ it('21. Додавання нового Товару з НЗ в Довідник
     })
 })
 
-it('26. Редагування Закупочної ціни / ПД Схвалено в табці Запчастини', function(){
+it('Редагування Закупочної ціни / ПД Схвалено в табці Запчастини', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
         .then(()=>{
@@ -948,7 +879,7 @@ it('26. Редагування Закупочної ціни / ПД Схвале
         })
 })
 
-it('27.Перевід у статус Ремонту', function(){
+it('Перевід у статус Ремонту', function(){
     cy.visit(approve);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
@@ -965,7 +896,7 @@ it('27.Перевід у статус Ремонту', function(){
     cy.wait(3000);
 })
 
-it('28.Ремонт (Р)', function(){
+it('Ремонт (Р)', function(){
   cy.visit(progress);
   cy.get('.styles-m__logo---2zDPJ').click()
   cy.wait(3000);
@@ -1000,7 +931,7 @@ it('28.Ремонт (Р)', function(){
   cy.wait(2000);
 })
 
-  it('29.Оплата і видача (ОВ)', function(){
+  it('Оплата і видача (ОВ)', function(){
     cy.visit(progress);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(4000);
@@ -1027,7 +958,7 @@ it('28.Ремонт (Р)', function(){
     cy.wait(4000);
   });
 
-  it('30. Статистика по НЗ', function(){
+  it('Статистика по НЗ', function(){
     cy.visit(success);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(4000);
@@ -1043,7 +974,7 @@ it('28.Ремонт (Р)', function(){
     cy.get('#rcDialogTitle4 > :nth-child(1)').contains('Завершено').should('exist');
   });
 
-it('31.Завантаження НЗ для Клієнта', function(){
+it('Завантаження НЗ для Клієнта', function(){
   cy.visit(success);
   cy.get('.styles-m__logo---2zDPJ').click()
   cy.wait(3000);
@@ -1058,7 +989,7 @@ it('31.Завантаження НЗ для Клієнта', function(){
   cy.wait(7000);
 });
 
-it('32. Перевірка завантаженних файлів', function(){
+it('Перевірка завантаженних файлів', function(){
   cy.visit(success);
   cy.get('.styles-m__logo---2zDPJ').click()
   cy.wait(3000);
@@ -1076,7 +1007,7 @@ it('32. Перевірка завантаженних файлів', function(){
   })
 });
 
-  it('33. Додавання Коментарів', function(){
+  it('Додавання Коментарів', function(){
     cy.visit(success);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(4000);
@@ -1096,7 +1027,7 @@ it('32. Перевірка завантаженних файлів', function(){
     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(6)').contains('2')
     });
 
-  it('34. Вкладка Історія в н/з', function(){
+  it('Вкладка Історія в н/з', function(){
     cy.visit(success);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
@@ -1110,7 +1041,7 @@ it('32. Перевірка завантаженних файлів', function(){
     cy.get('.ant-table-row > :nth-child(2) > a').should('exist');
   });
 
-  it('35. Вкладка Пост в н/з', function(){
+  it('Вкладка Пост в н/з', function(){
     cy.visit(success);
     cy.get('.styles-m__logo---2zDPJ').click()
     cy.wait(3000);
@@ -1125,8 +1056,7 @@ it('32. Перевірка завантаженних файлів', function(){
     cy.get('.styles-m__staticStationLoadsRow---MnLCJ > :nth-child(1)').should('exist');
   });
 
-  it('36. Перевірка відкриття модалки створення Працівника', function(){
-    /////cy.get('.styles-m__logo---2zDPJ').click()
+  it('Перевірка відкриття модалки створення Працівника', function(){
     cy.get(':nth-child(2) > .ant-menu-submenu-title').click().should('exist');
     cy.contains('Працівники').click()
         .then(()=>{
@@ -1137,8 +1067,7 @@ it('32. Перевірка завантаженних файлів', function(){
         })
   });
 
-  it('37. Перевірка відкриття картки існуючого Працівника', function(){
-   //// cy.get('.styles-m__logo---2zDPJ').click()
+  it('Перевірка відкриття картки існуючого Працівника', function(){
     cy.get(':nth-child(2) > .ant-menu-submenu-title').click().should('exist');
     cy.contains('Працівники').click()
         .then(()=>{
@@ -1167,7 +1096,7 @@ it('32. Перевірка завантаженних файлів', function(){
           cy.get('[data-row-key="ENTER_DATA"] > :nth-child(2)').should('exist');
           cy.get('.anticon-sort-ascending').click() //Сортування за постачальником
           cy.get('.ant-dropdown-menu > :nth-child(2) > div > span').click({force: true})
-          cy.get('[data-row-key="0"] > :nth-child(2)').should('exist');
+          //////cy.get('[data-row-key="0"] > :nth-child(1)').should('exist');
         })
   });
 })
