@@ -1170,4 +1170,4 @@ it('32. Перевірка завантаженних файлів', function(){
           cy.get('[data-row-key="0"] > :nth-child(2)').should('exist');
         })
   });
-  })
+})
