@@ -12,12 +12,12 @@ const cancel = 'https://'+url+'my.carbook.pro/orders/cancel';
 
 
 var date = new Date();
-//const idClient =''+date.getDate()+date.getMonth()+date.getMinutes();
+const idClient =''+date.getDate()+date.getMonth()+date.getMinutes();
 var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
 var codeNZ =''
 
-const idClient ='7927'
+//const idClient ='7927'
 
 
 describe ('BaseTest|UA|CarBook', function(){
@@ -821,7 +821,7 @@ it('Додавання нового Товару з НЗ в Довідник Т�
         })
         .then(()=>{
             cy.get('#У > .styles-m__mapChildsBlock---1oGYD > :nth-child(3) > .ant-btn').click();
-            cy.wait(1000);
+            cy.wait(8000);
             cy.pause()
         })
   });

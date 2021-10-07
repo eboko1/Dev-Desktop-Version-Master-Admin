@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-const url = 'dev-'   //test-   // dev-  // ''
+const url = ''   //test-   // dev-  // ''
 
 
 const baseUrl = 'https://'+url+'my.carbook.pro';
@@ -17,13 +17,13 @@ var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
 var codeNZ =''
 
-//const idClient ='6918'
+//const idClient ='7947'
 
 
 describe ('BaseTest|UA|CarBook', function(){
   beforeEach('User LogIn ', () => {
     cy.visit(baseUrl)
-    cy.get('#login.ant-input').type(Cypress.env('DevLogin'));  // ProdLogin     DevLogin      ProdLogin   TestSpecialistLogin  DevSpecialistLogin
+    cy.get('#login.ant-input').type(Cypress.env('ProdLogin'));  // ProdLogin     DevLogin      ProdLogin   TestSpecialistLogin  DevSpecialistLogin
     cy.get('#password').type(Cypress.env('Password')); //  TestSpecialistPassword  DevSpecialistPassword
     cy.get('button').click()
     cy.intercept('GET', baseUrl+'/dashboard')
