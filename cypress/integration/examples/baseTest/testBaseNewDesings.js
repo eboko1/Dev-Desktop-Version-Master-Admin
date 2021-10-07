@@ -1027,147 +1027,147 @@ it('28.Ремонт (Р)', function(){
     cy.wait(4000);
   });
 
-//   it('30. Статистика по НЗ', function(){
-//     cy.visit(success);
-//     cy.get('.styles-m__logo---2zDPJ').click()
-//     cy.wait(4000);
-//     cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
-//     cy.wait(2000);
-//     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
-//     cy.log('Вибір Н/З');
-//     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(1)').click();
-//     cy.wait(1000);
-//     cy.get('.anticon-info-circle').click({force: true})
-//     cy.wait(3000);
-//     cy.get('.ant-modal-wrap > .ant-modal > .ant-modal-content > .ant-modal-body').should('exist');
-//     cy.get('#rcDialogTitle4 > :nth-child(1)').contains('Завершено').should('exist');
-//   });
+  it('30. Статистика по НЗ', function(){
+    cy.visit(success);
+    cy.get('.styles-m__logo---2zDPJ').click()
+    cy.wait(4000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
+    cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
+    cy.log('Вибір Н/З');
+    cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(1)').click();
+    cy.wait(1000);
+    cy.get('.anticon-info-circle').click({force: true})
+    cy.wait(3000);
+    cy.get('.ant-modal-wrap > .ant-modal > .ant-modal-content > .ant-modal-body').should('exist');
+    cy.get('#rcDialogTitle4 > :nth-child(1)').contains('Завершено').should('exist');
+  });
 
-// it('31.Завантаження НЗ для Клієнта', function(){
-//   cy.visit(success);
-//   cy.get('.styles-m__logo---2zDPJ').click()
-//   cy.wait(3000);
-//   cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
-//   cy.wait(2000);
-//   cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
-//   cy.log('Вибір Н/З');
-//   cy.wait(4000);
-//   cy.get('.anticon-printer > svg').click();
-//   cy.log('Завантаження Наряд замовлення для Клієнта');
-//   cy.get('.ant-dropdown-menu-item').eq(5).click();
-//   cy.wait(7000);
-// });
+it('31.Завантаження НЗ для Клієнта', function(){
+  cy.visit(success);
+  cy.get('.styles-m__logo---2zDPJ').click()
+  cy.wait(3000);
+  cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+  cy.wait(2000);
+  cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
+  cy.log('Вибір Н/З');
+  cy.wait(4000);
+  cy.get('.anticon-printer > svg').click();
+  cy.log('Завантаження Наряд замовлення для Клієнта');
+  cy.get('.ant-dropdown-menu-item').eq(5).click();
+  cy.wait(7000);
+});
 
-// it('32. Перевірка завантаженних файлів', function(){
-//   cy.visit(success);
-//   cy.get('.styles-m__logo---2zDPJ').click()
-//   cy.wait(3000);
-//   cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
-//   cy.wait(2000);
-//   cy.get('a.styles-m__ordernLink---T-qWz').first().invoke('text')
-//         .then (text => {codeNZ = text;
-//         cy.log(codeNZ)
-//         const path = require("path");
-//       ////  cy.readFile(path.join('cypress/downloads', 'act-'+codeNZ+'.pdf')).should("exist"); // файл Акт прийому-передачі автомобіля
-//         cy.wait(1000);
-//         cy.readFile(path.join('cypress/downloads', 'order-'+codeNZ+'.pdf')).should("exist"); // файл Наряд замовлення для Клієнта
-//      //  // cy.wait(1000);
-//        //// cy.readFile(path.join('cypress/downloads', 'invoice-'+codeNZ+'.pdf')).should("exist");
-//   })
-// });
+it('32. Перевірка завантаженних файлів', function(){
+  cy.visit(success);
+  cy.get('.styles-m__logo---2zDPJ').click()
+  cy.wait(3000);
+  cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+  cy.wait(2000);
+  cy.get('a.styles-m__ordernLink---T-qWz').first().invoke('text')
+        .then (text => {codeNZ = text;
+        cy.log(codeNZ)
+        const path = require("path");
+      ////  cy.readFile(path.join('cypress/downloads', 'act-'+codeNZ+'.pdf')).should("exist"); // файл Акт прийому-передачі автомобіля
+        cy.wait(1000);
+        cy.readFile(path.join('cypress/downloads', 'order-'+codeNZ+'.pdf')).should("exist"); // файл Наряд замовлення для Клієнта
+     //  // cy.wait(1000);
+       //// cy.readFile(path.join('cypress/downloads', 'invoice-'+codeNZ+'.pdf')).should("exist");
+  })
+});
 
-//   it('33. Додавання Коментарів', function(){
-//     cy.visit(success);
-//     cy.get('.styles-m__logo---2zDPJ').click()
-//     cy.wait(4000);
-//     cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
-//     cy.wait(2000);
-//     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
-//     cy.log('Вибір Н/З');
-//     cy.wait(4000);
-//     cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
-//     cy.wait(1000);
-//     cy.get('.ant-tabs-tabpane-active > :nth-child(2) > .ant-form-item-label > label').should('exist');
-//     cy.get('#comment').type('ХХХ');
-//     ///////cy.get('.styles-m__commentsBlock---vzjO9 > .ant-row > .ant-form-item-label > label').contains('ZZZ');
-//     cy.log('Стан автомобіля');
-//     cy.get('#vehicleCondition').type('YYY');
-//     cy.get('.ant-tabs-tabpane-active > :nth-child(3) > .ant-form-item-label').should('exist');
-//     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(6)').contains('2')
-//     });
+  it('33. Додавання Коментарів', function(){
+    cy.visit(success);
+    cy.get('.styles-m__logo---2zDPJ').click()
+    cy.wait(4000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
+    cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
+    cy.log('Вибір Н/З');
+    cy.wait(4000);
+    cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
+    cy.wait(1000);
+    cy.get('.ant-tabs-tabpane-active > :nth-child(2) > .ant-form-item-label > label').should('exist');
+    cy.get('#comment').type('ХХХ');
+    ///////cy.get('.styles-m__commentsBlock---vzjO9 > .ant-row > .ant-form-item-label > label').contains('ZZZ');
+    cy.log('Стан автомобіля');
+    cy.get('#vehicleCondition').type('YYY');
+    cy.get('.ant-tabs-tabpane-active > :nth-child(3) > .ant-form-item-label').should('exist');
+    cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(6)').contains('2')
+    });
 
-//   it('34. Вкладка Історія в н/з', function(){
-//     cy.visit(success);
-//     cy.get('.styles-m__logo---2zDPJ').click()
-//     cy.wait(3000);
-//     cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
-//     cy.wait(2000);
-//     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
-//     cy.log('Вибір Запису');
-//     cy.wait(4000);
-//     cy.log('Для нового клієнта історія містить 1 елемент');
-//     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(7)').click();
-//     cy.get('.ant-table-row > :nth-child(2) > a').should('exist');
-//   });
+  it('34. Вкладка Історія в н/з', function(){
+    cy.visit(success);
+    cy.get('.styles-m__logo---2zDPJ').click()
+    cy.wait(3000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
+    cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
+    cy.log('Вибір Запису');
+    cy.wait(4000);
+    cy.log('Для нового клієнта історія містить 1 елемент');
+    cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(7)').click();
+    cy.get('.ant-table-row > :nth-child(2) > a').should('exist');
+  });
 
-//   it('35. Вкладка Пост в н/з', function(){
-//     cy.visit(success);
-//     cy.get('.styles-m__logo---2zDPJ').click()
-//     cy.wait(3000);
-//     cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
-//     cy.wait(2000);
-//     cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
-//     cy.log('Вибір Запису');
-//     cy.wait(4000);
-//     cy.log('Вкладка Пост');
-//     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(10)').contains('Пост')
-//     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(10)').click();
-//     cy.get('.styles-m__staticStationLoadsRow---MnLCJ > :nth-child(1)').should('exist');
-//   });
+  it('35. Вкладка Пост в н/з', function(){
+    cy.visit(success);
+    cy.get('.styles-m__logo---2zDPJ').click()
+    cy.wait(3000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
+    cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
+    cy.log('Вибір Запису');
+    cy.wait(4000);
+    cy.log('Вкладка Пост');
+    cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(10)').contains('Пост')
+    cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(10)').click();
+    cy.get('.styles-m__staticStationLoadsRow---MnLCJ > :nth-child(1)').should('exist');
+  });
 
-//   it('36. Перевірка відкриття модалки створення Працівника', function(){
-//     /////cy.get('.styles-m__logo---2zDPJ').click()
-//     cy.get(':nth-child(2) > .ant-menu-submenu-title').click().should('exist');
-//     cy.contains('Працівники').click()
-//         .then(()=>{
-//             cy.get('.ant-btn').click()
-//             cy.wait(2000)
-//             cy.get('.ant-form').should('exist');
-//             cy.get('#jobTitle').type('Test').should('exist');
-//         })
-//   });
+  it('36. Перевірка відкриття модалки створення Працівника', function(){
+    /////cy.get('.styles-m__logo---2zDPJ').click()
+    cy.get(':nth-child(2) > .ant-menu-submenu-title').click().should('exist');
+    cy.contains('Працівники').click()
+        .then(()=>{
+            cy.get('.ant-btn').click()
+            cy.wait(2000)
+            cy.get('.ant-form').should('exist');
+            cy.get('#jobTitle').type('Test').should('exist');
+        })
+  });
 
-//   it('37. Перевірка відкриття картки існуючого Працівника', function(){
-//    //// cy.get('.styles-m__logo---2zDPJ').click()
-//     cy.get(':nth-child(2) > .ant-menu-submenu-title').click().should('exist');
-//     cy.contains('Працівники').click()
-//         .then(()=>{
-//             cy.get('.styles-m__employeeName---2QyjT').first().click({force: true})
-//             cy.wait(2000)
-//             cy.get('.ant-tabs').should('exist');
-//             cy.wait(2000)
-//             cy.get(':nth-child(1) > .ant-row > .ant-col-18').contains('Менеджерський доступ');
-//         })
-//   });
+  it('37. Перевірка відкриття картки існуючого Працівника', function(){
+   //// cy.get('.styles-m__logo---2zDPJ').click()
+    cy.get(':nth-child(2) > .ant-menu-submenu-title').click().should('exist');
+    cy.contains('Працівники').click()
+        .then(()=>{
+            cy.get('.styles-m__employeeName---2QyjT').first().click({force: true})
+            cy.wait(2000)
+            cy.get('.ant-tabs').should('exist');
+            cy.wait(2000)
+            cy.get(':nth-child(1) > .ant-row > .ant-col-18').contains('Менеджерський доступ');
+        })
+  });
 
-//   it('38. Перевірка відкриття сторінки Деталі в Роботі', function(){
-//     cy.get('.styles-m__logo---2zDPJ').click()
-//     cy.get(':nth-child(5) > a').first().click({force: true})
-//         .then(()=>{
-//           cy.get('.styles-m__minimized---2nM6M > .ant-btn').click() // фільтр дата
-//           cy.wait(2000)
-//           cy.get('.styles-m__filterDateButtons---QBBQy > :nth-child(5)').click() // фільтр Рік
-//           cy.wait(5000)
-//           cy.get('.ant-dropdown-menu > :nth-child(1) > span').first().click({force: true}) // Фільтри поточний рік
-//           cy.get('.styles-m__headerContorls---2pU_V > .ant-radio-group > :nth-child(2)').click()
-//           cy.get('.anticon-sort-ascending').click()
-//           cy.wait(2000)
-//           cy.get('.ant-dropdown-menu > :nth-child(4) > div').click()
-//           cy.wait(2000)
-//           cy.get('[data-row-key="ENTER_DATA"] > :nth-child(2)').should('exist');
-//           cy.get('.anticon-sort-ascending').click() //Сортування за постачальником
-//           cy.get('.ant-dropdown-menu > :nth-child(2) > div > span').click({force: true})
-//           cy.get('[data-row-key="0"] > :nth-child(2)').should('exist');
-//         })
-//   });
+  it('38. Перевірка відкриття сторінки Деталі в Роботі', function(){
+    cy.get('.styles-m__logo---2zDPJ').click()
+    cy.get(':nth-child(5) > a').first().click({force: true})
+        .then(()=>{
+          cy.get('.styles-m__minimized---2nM6M > .ant-btn').click() // фільтр дата
+          cy.wait(2000)
+          cy.get('.styles-m__filterDateButtons---QBBQy > :nth-child(5)').click() // фільтр Рік
+          cy.wait(5000)
+          cy.get('.ant-dropdown-menu > :nth-child(1) > span').first().click({force: true}) // Фільтри поточний рік
+          cy.get('.styles-m__headerContorls---2pU_V > .ant-radio-group > :nth-child(2)').click()
+          cy.get('.anticon-sort-ascending').click()
+          cy.wait(2000)
+          cy.get('.ant-dropdown-menu > :nth-child(4) > div').click()
+          cy.wait(2000)
+          cy.get('[data-row-key="ENTER_DATA"] > :nth-child(2)').should('exist');
+          cy.get('.anticon-sort-ascending').click() //Сортування за постачальником
+          cy.get('.ant-dropdown-menu > :nth-child(2) > div > span').click({force: true})
+          cy.get('[data-row-key="0"] > :nth-child(2)').should('exist');
+        })
+  });
   })
