@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-const url = ''   //test-   // dev-  // ''
+const url = 'dev-'   
 
 
 const baseUrl = 'https://'+url+'my.carbook.pro';
@@ -20,11 +20,11 @@ var codeNZ =''
 //const idClient ='7947'
 
 
-describe ('BaseTest|UA|CarBook', function(){
+describe ('Desktop|Dev|UA|CarBook', function(){
   beforeEach('User LogIn ', () => {
     cy.visit(baseUrl)
-    cy.get('#login.ant-input').type(Cypress.env('ProdLogin'));  // ProdLogin     DevLogin      ProdLogin   TestSpecialistLogin  DevSpecialistLogin
-    cy.get('#password').type(Cypress.env('Password')); //  TestSpecialistPassword  DevSpecialistPassword
+    cy.get('#login.ant-input').type(Cypress.env('DevLogin'));  
+    cy.get('#password').type(Cypress.env('Password'));
     cy.get('button').click()
     cy.intercept('GET', baseUrl+'/dashboard')
     cy.get('.styles-m__title---Nwr2X').contains('Календар Завантаження');
@@ -154,7 +154,6 @@ describe ('BaseTest|UA|CarBook', function(){
     });
 
   it('3.Редагування мобільного номера для клієнта:'+idClient, function(){
- //////  cy.get('.styles-m__logo---2zDPJ').click()
     cy.get(':nth-child(2) > .ant-menu-submenu-title').click()
     cy.contains('Клієнти').click()
       .then(()=>{
@@ -171,7 +170,6 @@ describe ('BaseTest|UA|CarBook', function(){
       .then(()=>{
         cy.get('.ant-input-number-input').eq(1).focus().clear('0').type('0683781977')
         cy.wait(2000)
-       // cy.get('.ant-input-number-input').eq(1).focus().clear().type('0683781977')
       })
       .then(()=>{
         cy.get('.ant-modal-confirm-title').should('exist');
@@ -185,7 +183,6 @@ describe ('BaseTest|UA|CarBook', function(){
     })
 
     it('4.Додати Н/З, підтягування клієнта через пошук, клієнт: '+idClient, function(){
-    //// cy.get('.styles-m__logo---2zDPJ').click()
         cy.contains('Ремонти').click()
           .then(()=>{
               cy.log('Вибір Меню ремонти');
@@ -208,7 +205,6 @@ describe ('BaseTest|UA|CarBook', function(){
     });
 
   it('5.Редагування н/з та додавання Поста, Механіка, Готівки, Реквізити STO, Пробіг', function(){
-     //// cy.get('.styles-m__logo---2zDPJ').click()
       cy.log('Вибір Меню ремонти');
       cy.contains('Ремонти').click()
         .then(()=>{
@@ -259,11 +255,9 @@ describe ('BaseTest|UA|CarBook', function(){
             cy.log('Процес Збереження н/з ');
             cy.wait(3000);
         })
-        //cy.pause()
   });
 
   it('6.Вибір Локації', function(){
-     ////// cy.get('.styles-m__logo---2zDPJ').click()
       cy.log('Вибір Меню ремонти');
       cy.contains('Ремонти').click();// select menu remont
       cy.wait(3000);
@@ -276,8 +270,6 @@ describe ('BaseTest|UA|CarBook', function(){
       cy.log('Вибір Локації з Н/З');
       cy.wait(2000);
       cy.get('.styles-m__locationWrapper---eCnDV > .ant-select > .ant-select-selection> :nth-child(2)').first().click({ force: true });
-     //// cy.wait(2000);
-     /// cy.get('.ant-select-dropdown-menu-item-active').click();
       cy.wait(3000);
       cy.get('.styles-m__modalButton---zblVE > .ant-btn').click();// кнопка Прийняти модалка Прийняття авто на СТО
       cy.log('Завантаження АКТУ прийому передачі');
@@ -300,7 +292,6 @@ describe ('BaseTest|UA|CarBook', function(){
     });
 
   it('8.Перевід у статус Запис', function(){
-    /////  cy.get('.styles-m__logo---2zDPJ').click()
       cy.log('Вибір Меню ремонти'+ cy.url());
       cy.contains('Ремонти').first().click({ force: true })
         .then(()=>{
@@ -410,7 +401,6 @@ describe ('BaseTest|UA|CarBook', function(){
             cy.log('Процес Збереження н/з ');
             cy.wait(2000)
         })
-       // cy.pause()
   });
 
   it('10.Редагування ціни для доданої Роботи з діагностики', function(){
@@ -516,11 +506,6 @@ describe ('BaseTest|UA|CarBook', function(){
             cy.get('.ant-modal-footer > div > .ant-btn-primary').first().click({force: true})
             cy.wait(2000);
         })
-            // додати закуп ціну
-            // додати Механіка
-            // витягти поля для знижки
-            // зробити перевірку знижки
-            // зробити перевірку
     })
 
     it('12.1 Додавання Робіт повторно', function(){
@@ -764,7 +749,6 @@ it('19. Вкладка Запчастини > Швидке редагуванн�
 });
 
 it('20. Додавання Товару через модалку Товару', function(){
-   ///// cy.get('.styles-m__logo---2zDPJ').click()
     cy.get('.ant-menu-submenu-title').contains('Довідник').click()
     cy.wait(2000);
     cy.get('.ant-menu-submenu').contains('Довідники та налаштування').click()
@@ -810,7 +794,6 @@ it('21. Додавання нового Товару з НЗ в Довідник
 });
 
   it('22. Прихід від Постачальника', function(){
-   ///// cy.get('.styles-m__logo---2zDPJ').click()
     cy.get('.ant-menu-submenu-title').contains('Склад').click()
     cy.wait(2000);
     cy.get('.ant-menu-submenu').contains('Приходи на склад').click()
@@ -1126,7 +1109,6 @@ it('32. Перевірка завантаженних файлів', function(){
   });
 
   it('36. Перевірка відкриття модалки створення Працівника', function(){
-    /////cy.get('.styles-m__logo---2zDPJ').click()
     cy.get(':nth-child(2) > .ant-menu-submenu-title').click().should('exist');
     cy.contains('Працівники').click()
         .then(()=>{
@@ -1138,7 +1120,6 @@ it('32. Перевірка завантаженних файлів', function(){
   });
 
   it('37. Перевірка відкриття картки існуючого Працівника', function(){
-   //// cy.get('.styles-m__logo---2zDPJ').click()
     cy.get(':nth-child(2) > .ant-menu-submenu-title').click().should('exist');
     cy.contains('Працівники').click()
         .then(()=>{
