@@ -17,10 +17,10 @@ var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
 var codeNZ =''
 
-//const idClient ='7947'
+//const idClient ='27928'
 
 
-describe ('Desktop|Dev|UA|CarBook', function(){
+describe ('Desktop|Dev|UA|', function(){
   beforeEach('User LogIn ', () => {
     cy.visit(baseUrl)
     cy.get('#login.ant-input').type(Cypress.env('DevLogin'));  
@@ -168,7 +168,7 @@ describe ('Desktop|Dev|UA|CarBook', function(){
         cy.wait(2000)
       })
       .then(()=>{
-        cy.get('.ant-input-number-input').eq(1).focus().clear('0').type('0683781977')
+        cy.get('.ant-input-number-input').eq(1).focus().clear().type('683781977')
         cy.wait(2000)
       })
       .then(()=>{
@@ -244,6 +244,8 @@ describe ('Desktop|Dev|UA|CarBook', function(){
             cy.wait(1000);
             cy.log('Вибір Запчастист');
             cy.get ('#appurtenanciesResponsible').type('Запчастист').first().click({ force: true })
+            cy.wait(3000);
+            cy.get(':nth-child(2) > :nth-child(3) > .ant-form-item-control-wrapper > .ant-form-item-control > .ant-form-item-children > .ant-select > .ant-select-selection > .ant-select-selection__rendered > .ant-select-selection-selected-value').should('have.text','Запчастист Vika')
            ///// cy.get('.ant-select-dropdown-menu-item-active')
             cy.wait(1000);
             cy.get('#odometerValue').clear().type('123456')
@@ -273,6 +275,8 @@ describe ('Desktop|Dev|UA|CarBook', function(){
       cy.wait(3000);
       cy.get('.styles-m__modalButton---zblVE > .ant-btn').click();// кнопка Прийняти модалка Прийняття авто на СТО
       cy.log('Завантаження АКТУ прийому передачі');
+      cy.wait(3000);
+      cy.get('#businessLocationId > .ant-select-selection > .ant-select-selection__rendered > .ant-select-selection__placeholder').should('have.text','Цех. Робочий пост')
       cy.wait(5000);
   });
 
@@ -306,22 +310,9 @@ describe ('Desktop|Dev|UA|CarBook', function(){
          cy.get('.styles-m__dropdownTitle---3Vlog > :nth-child(2) > span').click(); // Статус Запис
         })
         .then(()=>{
-            cy.get('.ant-dropdown-menu-item').contains('Запис').click()
+            cy.get('.ant-dropdown-menu-item').contains('Запис').first().click({ force: true });
             cy.log('Перевести н/з в статус Запис');
             cy.wait(3000);
-        })
-        .then(()=>{
-            cy.get('.styles-m__headerContorls---2pU_V > .anticon-save').click() // зберегти картку
-        })
-        .then(()=>{
-            cy.wait(3000);
-            cy.log('Процес Збереження н/з ');
-        })
-        .then(()=>{
-            cy.get('.anticon-close').first().click({ force: true }); // закрити картку
-        })
-        .then(()=>{
-            cy.wait(2000);
         })
   });
 
@@ -766,7 +757,7 @@ it('20. Додавання Товару через модалку Товару',
     cy.get('#certificate').type('00000000000000000')
     cy.get('.ant-form').find('button').click()   //.contains('Застосувати')
     cy.wait(2000);
-    cy.get(':nth-child(1) > :nth-child(1) > div > .ant-input').type(idClient+'X')
+    cy.get(':nth-child(1) > :nth-child(1) > div > .ant-input').first().type(idClient+'X')
     cy.wait(3000);
     cy.get('.ant-table-content td').first().should('exist')
   });
@@ -1037,7 +1028,7 @@ it('31.Завантаження НЗ для Клієнта', function(){
   cy.wait(4000);
   cy.get('.anticon-printer > svg').click();
   cy.log('Завантаження Наряд замовлення для Клієнта');
-  cy.get('.ant-dropdown-menu-item').eq(5).click();
+  cy.get('.ant-dropdown-menu-item').eq(5).click({force: true});
   cy.wait(7000);
 });
 
@@ -1071,12 +1062,16 @@ it('32. Перевірка завантаженних файлів', function(){
     cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
     cy.wait(1000);
     cy.get('.ant-tabs-tabpane-active > :nth-child(2) > .ant-form-item-label > label').should('exist');
-    cy.get('#comment').type('ХХХ');
+    cy.get('.ant-input.styles-m__comment---3QjTs').clear().type('Не заляпать бампер мастилом');
     ///////cy.get('.styles-m__commentsBlock---vzjO9 > .ant-row > .ant-form-item-label > label').contains('ZZZ');
     cy.log('Стан автомобіля');
-    cy.get('#vehicleCondition').type('YYY');
+    cy.get('#vehicleCondition').type('замінити повітряні фільтри мотора');
+    cy.wait(2000);
     cy.get('.ant-tabs-tabpane-active > :nth-child(3) > .ant-form-item-label').should('exist');
     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(6)').contains('2')
+    cy.wait(1000);
+    cy.get('.anticon-save > svg').first().click({force: true});
+    cy.wait(4000);
     });
 
   it('34. Вкладка Історія в н/з', function(){
@@ -1141,11 +1136,12 @@ it('32. Перевірка завантаженних файлів', function(){
           cy.wait(5000)
           cy.get('.ant-dropdown-menu > :nth-child(1) > span').first().click({force: true}) // Фільтри поточний рік
           cy.get('.styles-m__headerContorls---2pU_V > .ant-radio-group > :nth-child(2)').click()
-          cy.get('.anticon-sort-ascending').click()
+          cy.get('.anticon-sort-ascending').first().click({force: true})
           cy.wait(2000)
-          cy.get('.ant-dropdown-menu > :nth-child(4) > div').click()
+          cy.get('.ant-dropdown-menu > :nth-child(2) > div').first().click({force: true})
           cy.wait(2000)
-          cy.get('[data-row-key="ENTER_DATA"] > :nth-child(2)').should('exist');
+          cy.get('.ant-tabs-tabpane-active > .ant-table-wrapper').should('exist');
+          cy.wait(2000)
           cy.get('.anticon-sort-ascending').click() //Сортування за постачальником
           cy.get('.ant-dropdown-menu > :nth-child(2) > div > span').click({force: true})
           cy.get('[data-row-key="0"] > :nth-child(2)').should('exist');
