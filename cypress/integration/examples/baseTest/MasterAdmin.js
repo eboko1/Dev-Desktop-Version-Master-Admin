@@ -17,7 +17,7 @@ var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
 var codeNZ =''
 
-//const idClient ='27928'
+//const idClient ='2896'
 
 
 describe ('Dev|Desktop|UA|', function(){
@@ -85,7 +85,7 @@ describe ('Dev|Desktop|UA|', function(){
             })
             .then(()=>{
                 cy.log('Номер телефону клієнта');
-                cy.get('.ant-input-number-input').eq(2).type(second+'0'+minute+''+second+''+minute)
+                cy.get('.ant-input-number-input').last().type(second+'0'+minute+''+second+''+minute)
             })
             .then(()=>{
                 cy.log('Додавання АВТО');
