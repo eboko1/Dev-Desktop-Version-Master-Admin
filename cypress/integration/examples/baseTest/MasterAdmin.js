@@ -17,7 +17,7 @@ var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
 var codeNZ =''
 
-//const idClient ='28921'
+//const idClient ='27930'
 
 
 describe ('Dev|Desktop|UA|', function(){
@@ -1061,17 +1061,23 @@ it('32. Перевірка завантаженних файлів', function(){
     cy.wait(4000);
     cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
     cy.wait(1000);
-    cy.get('.ant-tabs-tabpane-active > :nth-child(2) > .ant-form-item-label > label').should('exist');
     cy.get('.ant-input.styles-m__comment---3QjTs').clear().type('Не заляпать бампер мастилом');
-    ///////cy.get('.styles-m__commentsBlock---vzjO9 > .ant-row > .ant-form-item-label > label').contains('ZZZ');
     cy.log('Стан автомобіля');
-    cy.get('#vehicleCondition').type('замінити повітряні фільтри мотора');
+    cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').clear().type('Замінити повітряні фільтри мотора');
     cy.wait(2000);
-    cy.get('.ant-tabs-tabpane-active > :nth-child(3) > .ant-form-item-label').should('exist');
-    cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(6)').contains('2')
+    cy.get(':nth-child(5) > .styles-m__commentInput---2Ptrr').clear().type('Пройти повторно діагностику');
+    //cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(6)').contains('2')
     cy.wait(1000);
     cy.get('.anticon-save > svg').first().click({force: true});
     cy.wait(4000);
+    cy.wait(4000);
+    cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
+    cy.wait(1000);
+    cy.get('.ant-input.styles-m__comment---3QjTs').should('not.have.text','Коментарі клієнта');
+    cy.get(':nth-child(5) > .styles-m__commentInput---2Ptrr').contains('Пройти повторно діагностику')
+    cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').should('not.have.text','Рекомендації для клієнта');
+   // cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').should('not.have.text','Рекомендації для клієнта');
+
     });
 
   it('34. Вкладка Історія в н/з', function(){
