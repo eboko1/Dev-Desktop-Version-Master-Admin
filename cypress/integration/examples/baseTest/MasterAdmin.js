@@ -17,7 +17,7 @@ var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
 var codeNZ =''
 
-//const idClient ='2896'
+//const idClient ='28921'
 
 
 describe ('Dev|Desktop|UA|', function(){
@@ -248,7 +248,7 @@ describe ('Dev|Desktop|UA|', function(){
             cy.get(':nth-child(2) > :nth-child(3) > .ant-form-item-control-wrapper > .ant-form-item-control > .ant-form-item-children > .ant-select > .ant-select-selection > .ant-select-selection__rendered > .ant-select-selection-selected-value').should('have.text','Запчастист Vika')
            ///// cy.get('.ant-select-dropdown-menu-item-active')
             cy.wait(1000);
-            cy.get('#odometerValue').clear().type('123456')
+            cy.get('.ant-input-number.styles-m__odometr---3f9TO > .ant-input-number-input-wrap > .ant-input-number-input').clear().type('123456')
         })
         .then(()=>{
             cy.get('.styles-m__headerContorls---2pU_V > .anticon-save').click() // зберегти картку
