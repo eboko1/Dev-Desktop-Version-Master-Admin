@@ -14,7 +14,7 @@ var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
 var codeNZ =''
 
-//const idClient ='27930'
+//const idClient ='91042'
 
 
 describe ('Dev|Desktop|UA|', function(){
@@ -57,15 +57,29 @@ describe ('Dev|Desktop|UA|', function(){
         .then(()=>{
             cy.log('Модалка Додати Клієнта')
             cy.get('#name').type('БазовийКлієнт' + idClient)
-            cy.get('#patronymic').type('По батькові')
+            cy.wait(2000)
+            cy.get('#patronymic').type('Побатькові')
+           /// cy.get('.ant-modal-body').find('.ant-input').eq(0).should('have.text','БазовийКлієнт'+ idClient)
             cy.get('#surname').type('Прізвище')
+
             .then(()=>{
-                cy.get('#sex').click();
-                cy.contains('Чоловіча').click();
+                cy.get('#type').click({ force: true })
+                cy.get('.ant-select-dropdown-menu-item').eq(0).click({ force: true });
+               //// cy.get('#sex').click();
+               //// cy.contains('Чоловіча').click();
             })
             .then(()=>{
                 cy.get('#status').click();
-                cy.contains('Преміум').click();
+                cy.contains('Постійний').click();
+            })
+            .then(()=>{
+                cy.get('#source').click();
+                cy.contains('CarBook').click();
+                cy.get('#source').should('have.text','CarBook');
+            })
+            .then(()=>{
+               cy.get('#sex').click();
+               cy.contains('Чоловіча').click();
             })
             .then(()=>{
                 cy.log('Дата народження клієнта ');
@@ -73,18 +87,24 @@ describe ('Dev|Desktop|UA|', function(){
                 cy.contains('10').click();
             })
             .then(()=>{
-                cy.get('#source').click();
-                cy.contains('CarBook').click()
+                cy.wait(1000)
+                cy.get(':nth-child(3) > :nth-child(3) > .ant-row > .ant-form-item-control-wrapper > .ant-form-item-control > .ant-form-item-children > #comment').click({ force: true }).type('Комент Постійний Клієнт)))')
+               ///// cy.get('#comment').should('have.text','Комент Постійний Клієнт)))')
             })
             .then(()=>{
-                cy.get('#paymentRespite').first().type('5');
-
+                // cy.log('Номер телефону клієнта');
+                const tel =second+'0'+minute+''+second+''+minute;
+                cy.get('.ant-modal-body').find('.ant-input-number-input').first().clear().type(tel)
+                ///////cy.get('.ant-form > :nth-child(4) > :nth-child(1)').find('.ant-input-number-input').contains('+380'+tel).should('have.value','+380'+tel)
             })
             .then(()=>{
-                cy.log('Номер телефону клієнта');
-                cy.get('.ant-input-number-input').last().type(second+'0'+minute+''+second+''+minute)
+                cy.get('.ant-modal-body').find('.ant-input').last().clear().type('eboko1@gmail.com')
             })
             .then(()=>{
+                cy.get('#paymentRespite').first().clear().type('5');
+            })
+            .then(()=>{
+                cy.wait(1000)
                 cy.log('Додавання АВТО');
                 cy.get('.styles-m__addVehicleButtonCont---Y1h26 > .ant-btn').first().click({ force: true }) //{ force: true }
             })
@@ -109,7 +129,7 @@ describe ('Dev|Desktop|UA|', function(){
                 cy.get(':nth-child(4) > .ant-col-12').click().type('2014')
                 cy.wait(2000)
                 cy.get('.ant-select-dropdown-menu-item-active').click()
-                cy.wait(2000)
+                cy.wait(3000)
             })
             .then(()=>{
                 cy.log('Марка авто')
@@ -147,10 +167,25 @@ describe ('Dev|Desktop|UA|', function(){
            cy.get('.ant-btn-primary').contains('Додати').click({force: true} )
            cy.wait(3000)
         })
-       // cy.pause()
     });
 
-  it('3.Редагування мобільного номера для клієнта:'+idClient, function(){
+    it('2.1 Перевірка заповнених полів Картка клієнта '+idClient, function(){
+        cy.get(':nth-child(2) > .ant-menu-submenu-title').click()
+        cy.contains('Клієнти').click()
+          .then(()=>{
+              cy.wait(5000)
+              cy.log('Пошук клієнта');
+              cy.get('.ant-input').last().type('БазовийКлієнт'+idClient)  //
+              cy.wait(5000)
+          })
+          .then(()=>{
+            cy.get('.styles-m__clientLink---1JZdU').first().click()
+            cy.wait(2000)
+          })
+          cy.get('#source').should('have.text','CarBook')
+        })
+
+  it('3. Редагування мобільного номера Клієнта:'+idClient, function(){
     cy.get(':nth-child(2) > .ant-menu-submenu-title').click()
     cy.contains('Клієнти').click()
       .then(()=>{
@@ -158,14 +193,13 @@ describe ('Dev|Desktop|UA|', function(){
           cy.log('Пошук клієнта');
           cy.get('.ant-input').last().type('БазовийКлієнт'+idClient)  //
           cy.wait(5000)
-
       })
       .then(()=>{
         cy.get('.styles-m__clientLink---1JZdU').first().click()
         cy.wait(2000)
       })
       .then(()=>{
-        cy.get('.ant-input-number-input').eq(1).focus().clear().type('683781977')
+        cy.get('.ant-form > :nth-child(4) > :nth-child(1)').find('.ant-input-number-input').focus().clear().type('683781977')
         cy.wait(2000)
       })
       .then(()=>{
@@ -173,9 +207,7 @@ describe ('Dev|Desktop|UA|', function(){
         cy.get('.ant-modal-confirm-btns > .ant-btn').click()
         cy.wait(2000)
         cy.get('.styles-m__editClientForm---2hdWi > .ant-btn').click()
-      })
-      .then(()=>{
-        cy.wait(5000)
+        cy.wait(2000)
       })
     })
 
@@ -214,10 +246,10 @@ describe ('Dev|Desktop|UA|', function(){
             cy.get('.ant-form-item-required > span > .anticon ').first().click({ force: true })
             cy.wait(2000);
             cy.get('.timeColumn > :nth-child(2)').should('exist')
-            /////Вибір поста
-            ////cy.get(':nth-child(1) > .sc-jtRfpW > .sc-gxMtzJ > :nth-child(9)').trigger('mousedown')
-            ////cy.get(':nth-child(1) > .sc-jtRfpW > .sc-kTUwUJ > :nth-child(9) > .sc-gGBfsJ').click()
-            ////cy.get(':nth-child(1) > .sc-jtRfpW > .sc-gxMtzJ > :nth-child(9)').invoke('show').click()
+            ///Вибір поста
+            cy.get(':nth-child(1) > .sc-jtRfpW > .sc-gxMtzJ > :nth-child(9)').trigger('mousedown')
+            //cy.get(':nth-child(1) > .sc-jtRfpW > .sc-kTUwUJ > :nth-child(9) > .sc-gGBfsJ').click()
+            cy.get(':nth-child(1) > .sc-jtRfpW > .sc-gxMtzJ > :nth-child(9)').invoke('show').click()
             cy.wait(2000);
             cy.log('Закриття модалки Планувальника');
             cy.get('.ant-modal-close').last().click({ force: true })
@@ -230,14 +262,17 @@ describe ('Dev|Desktop|UA|', function(){
         .then(()=>{
             cy.log('Вибір Готівка');
             cy.get('#paymentMethod').click();
+            cy.get ('#paymentMethod').should('not.have.text','')
         })
         .then(()=>{
             cy.get('.ant-select-dropdown-menu-item-active').click();
             cy.log('Вибір Реквізити');
             cy.get ('#requisite').click();
+            cy.wait(1000);
+            cy.get('.ant-select-dropdown-menu-item-active').click();
+            cy.get ('#requisite').should('not.have.text','')
         })
         .then(()=>{
-            cy.get('.ant-select-dropdown-menu-item-active').click();
             cy.wait(1000);
             cy.log('Вибір Запчастист');
             cy.get ('#appurtenanciesResponsible').type('Запчастист').first().click({ force: true })
@@ -245,16 +280,60 @@ describe ('Dev|Desktop|UA|', function(){
             cy.get(':nth-child(2) > :nth-child(3) > .ant-form-item-control-wrapper > .ant-form-item-control > .ant-form-item-children > .ant-select > .ant-select-selection > .ant-select-selection__rendered > .ant-select-selection-selected-value').should('have.text','Запчастист Vika')
            ///// cy.get('.ant-select-dropdown-menu-item-active')
             cy.wait(1000);
-            cy.get('.ant-input-number.styles-m__odometr---3f9TO > .ant-input-number-input-wrap > .ant-input-number-input').clear().type('123456')
+            cy.get('.ant-input-number-input').eq(0).clear().type('7') 
+           //
+            cy.wait(2000);
+            cy.get('.styles-m__odometrInput---7BQMj > .ant-input-number-input-wrap > .ant-input-number-input').eq(1).clear().type('123456') 
         })
         .then(()=>{
             cy.get('.styles-m__headerContorls---2pU_V > .anticon-save').click() // зберегти картку
         })
         .then(()=>{
+            cy.get('.ant-input-number-input').eq(0).should('have.value',7)
+            cy.get('.styles-m__odometrInput---7BQMj > .ant-input-number-input-wrap > .ant-input-number-input').eq(1).should('have.value',123456)
             cy.log('Процес Збереження н/з ');
             cy.wait(3000);
         })
   });
+
+  it('Перевірка заповнених полів: Поста, Механіка, Готівки, Реквізити STO, Пробіг, Знижка', function(){
+    cy.log('Вибір Меню ремонти');
+    cy.contains('Ремонти').click()
+      .then(()=>{
+          cy.get('.ant-input-search > .ant-input').type(idClient)
+          cy.wait(2000);
+          cy.get('.styles-m__ordernLink---T-qWz').first().click({ force: true });//Нові н/з
+      })
+      .then(()=>{
+          cy.get('.styles-m__headerColumns---2oOX2 > :nth-child(1)').find('.ant-select-selection').contains('Пост').should('have.text','Пост 1') 
+          cy.get('.ant-form').find('.ant-select-selection-selected-value').eq(0).should('not.have.text','')
+          cy.wait(2000);
+          cy.get('.ant-form').find('.ant-select-selection-selected-value').eq(1).should('not.have.text','')
+          cy.get('.ant-form').find('.ant-select-selection-selected-value').eq(2).should('not.have.text','')
+          cy.get('.ant-form').find('.ant-select-selection-selected-value').eq(3).should('not.have.text','')
+          cy.get('.ant-form').find('.ant-select-selection-selected-value').eq(4).should('have.text','Готівка')
+          cy.wait(2000);
+      })
+      .then(()=>{
+        cy.get('.ant-form').find('.ant-select-selection-selected-value').eq(5).should('not.have.text','')
+        cy.wait(2000);
+      })
+      .then(()=>{
+          cy.wait(1000);
+          cy.get('.ant-input-number-input').eq(0).should('have.value',7)
+          cy.wait(1000);
+          cy.get('.styles-m__odometrInput---7BQMj > .ant-input-number-input-wrap > .ant-input-number-input').eq(1).should('have.value',123456) 
+          cy.get('#clientRequisite').should('not.have.text','') 
+     
+      })
+      .then(()=>{
+          cy.get('.styles-m__headerContorls---2pU_V > .anticon-save').click() // зберегти картку
+      })
+      .then(()=>{
+          cy.log('Процес Збереження н/з ');
+          cy.wait(3000);
+      })
+});
 
   it('6.Вибір Локації', function(){
       cy.log('Вибір Меню ремонти');
@@ -270,11 +349,12 @@ describe ('Dev|Desktop|UA|', function(){
       cy.wait(2000);
       cy.get('.styles-m__locationWrapper---eCnDV > .ant-select > .ant-select-selection> :nth-child(2)').first().click({ force: true });
       cy.wait(3000);
+      cy.get('.ant-select-dropdown-menu-item-active').click({ force: true });
       cy.get('.styles-m__modalButton---zblVE > .ant-btn').click();// кнопка Прийняти модалка Прийняття авто на СТО
       cy.log('Завантаження АКТУ прийому передачі');
       cy.wait(3000);
-      cy.get('#businessLocationId > .ant-select-selection > .ant-select-selection__rendered > .ant-select-selection__placeholder').should('have.text','Цех. Робочий пост')
-      cy.wait(5000);
+      cy.get('.ant-form').find('.ant-select-selection-selected-value').eq(4).should('not.have.text','')
+      cy.log('TTT'+cy.get('.ant-form').find('.ant-select-selection-selected-value').eq(1))
   });
 
     it('7.Перевірка Інфо по автомобілю ', function(){
@@ -375,7 +455,10 @@ describe ('Dev|Desktop|UA|', function(){
             cy.get('[style="width: 35%; margin-right: 5px;"]').click();//кнопка Створити калькуляцію
         })
         .then(()=>{
-            cy.get('.styles-m__confirm_diagnostic_modal_row_button---36VYf > [title="Створити роботи і з/ч автоматично"]').click();
+
+           ///// cy.get('.ant-modal-body').find('.ant-btn').contains('авто').first().click({force: true}) 
+           ///// cy.get('.styles-m__confirm_diagnostic_modal_row_button---36VYf > [title="Створити роботи і з/ч автоматично"]').click();
+           cy.get('.styles-m__confirm_diagnostic_modal_element_title---1wZ-P > .ant-btn').click();
             cy.wait(3000)
         })
         .then(()=>{
@@ -402,6 +485,7 @@ describe ('Dev|Desktop|UA|', function(){
     cy.wait(4000);
     cy.log('Вкладка Роботи');
     cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(3)').click();
+    /// перевірка доданої роботи з діагностики
     cy.wait(1000);
     cy.get(':nth-child(1) > [title="Швидке редагування"] > div').first().click({force: true})
     cy.wait(1000);
@@ -743,11 +827,11 @@ it('20. Додавання Товару через модалку Товару',
     cy.get('button').contains('Товари').last().click({force: true})
     cy.get('.ant-btn').click()
     cy.get('#code').type(idClient+'X')
-    cy.get(':nth-child(3) > .ant-col-15 > .ant-form-item-control > .ant-form-item-children > .ant-select > .ant-select-selection').type('100 Plus')
+    cy.get('.ant-modal-body').find('.ant-select > .ant-select-selection').eq(0).type('100 Plus')
     cy.wait(2000);
     cy.get('.ant-select-dropdown-menu-item').click({force: true})
     cy.wait(2000);
-    cy.get(':nth-child(4) > .ant-col-15 > .ant-form-item-control > .ant-form-item-children > .ant-select > .ant-select-selection').type('1020201')
+    cy.get('.ant-modal-body').find('.ant-select > .ant-select-selection').eq(1).type('1020201')
     cy.wait(2000);
     cy.get(':nth-child(3) > :nth-child(1) > :nth-child(3) > .ant-select-tree-treenode-switcher-open > .ant-select-tree-child-tree > li > .ant-select-tree-node-content-wrapper').click({force: true})
     cy.get('#tradeCode').type('0000000000')
