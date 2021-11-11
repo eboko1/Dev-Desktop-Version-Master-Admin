@@ -9,15 +9,15 @@ const cancel = 'https://'+Cypress.env('url')+'my.carbook.pro/orders/cancel';
 
 
 var date = new Date();
-const idClient =''+date.getDate()+date.getMonth()+date.getMinutes();
+//const idClient =''+date.getDate()+date.getMonth()+date.getMinutes();
 var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
 var codeNZ =''
 
-//const idClient ='91042'
+const idClient ='6943'
 
 
-describe ('Dev|Desktop|UA|', function(){
+describe ('Base|My|Desktop|UA|', function(){
   beforeEach('User LogIn ', () => {
     cy.visit(baseUrl)
     cy.get('#login.ant-input').type(Cypress.env('Login'));  
