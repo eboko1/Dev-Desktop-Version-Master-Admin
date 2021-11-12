@@ -9,7 +9,7 @@ const cancel = 'https://'+Cypress.env('url')+'my.carbook.pro/orders/cancel';
 
 
 var date = new Date();
-//const idClient ='31039'
+//const idClient ='28950'
 const idClient =''+date.getDate()+date.getMonth()+date.getMinutes();
 var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
@@ -911,11 +911,6 @@ it('21. Додавання нового Товару з НЗ в Довідник
     cy.get('.styles-m__header---2z2EP').contains('Врах.').should('exist')
   });
 
-//   it('23. Повернення Постачальнику', function(){
-//     cy.get('.ant-menu-submenu-title').contains('Склад').click()
-//     cy.wait(2000);
-//   });
-
   it('24.Узгодження замовлення', function(){
     cy.visit(approve)
     cy.get('.styles-m__logo---2zDPJ').click()
@@ -1047,6 +1042,34 @@ it('28.Ремонт (Р)', function(){
   cy.wait(2000);
 })
 
+    it('Додавання Коментарів', function(){
+        cy.visit(progress);
+        cy.get('.styles-m__logo---2zDPJ').click()
+        cy.wait(4000);
+        cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+        cy.wait(2000);
+        cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
+        cy.log('Вибір Н/З');
+        cy.wait(4000);
+        cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
+        cy.wait(1000);
+        cy.get('.ant-input.styles-m__comment---3QjTs').clear().type('Не заляпать бампер мастилом');
+        cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').clear().type('Без царапин...'); //Стан автомобіля
+        cy.wait(2000);
+        cy.get(':nth-child(4) > .styles-m__commentInput---2Ptrr').clear().type('Замінити повітряні фільтри мотора'); 
+        cy.get(':nth-child(5) > .styles-m__commentInput---2Ptrr').clear().type('Пройти повторно діагностику');
+        cy.wait(1000);
+        cy.get('.anticon-save > svg').first().click({force: true});
+        cy.wait(4000);
+        cy.wait(4000);
+        cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
+        cy.wait(1000);
+        cy.get('.ant-input.styles-m__comment---3QjTs').should('not.have.text','Коментарі клієнта');
+        cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').should('not.have.text','Рекомендації для клієнта');
+        cy.get(':nth-child(4) > .styles-m__commentInput---2Ptrr').should('have.text','Замінити повітряні фільтри мотора'); 
+        cy.get(':nth-child(5) > .styles-m__commentInput---2Ptrr').contains('Пройти повторно діагностику')
+    });
+
   it('29.Оплата і видача (ОВ)', function(){
     cy.visit(progress);
     cy.get('.styles-m__logo---2zDPJ').click()
@@ -1122,36 +1145,6 @@ it('32. Перевірка завантаженних файлів', function(){
        //// cy.readFile(path.join('cypress/downloads', 'invoice-'+codeNZ+'.pdf')).should("exist");
   })
 });
-
-  it('33. Додавання Коментарів', function(){
-    cy.visit(success);
-    cy.get('.styles-m__logo---2zDPJ').click()
-    cy.wait(4000);
-    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
-    cy.wait(2000);
-    cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
-    cy.log('Вибір Н/З');
-    cy.wait(4000);
-    cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
-    cy.wait(1000);
-    cy.get('.ant-input.styles-m__comment---3QjTs').clear().type('Не заляпать бампер мастилом');
-    cy.log('Стан автомобіля');
-    cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').clear().type('Замінити повітряні фільтри мотора');
-    cy.wait(2000);
-    cy.get(':nth-child(5) > .styles-m__commentInput---2Ptrr').clear().type('Пройти повторно діагностику');
-    //cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(6)').contains('2')
-    cy.wait(1000);
-    cy.get('.anticon-save > svg').first().click({force: true});
-    cy.wait(4000);
-    cy.wait(4000);
-    cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
-    cy.wait(1000);
-    cy.get('.ant-input.styles-m__comment---3QjTs').should('not.have.text','Коментарі клієнта');
-    cy.get(':nth-child(5) > .styles-m__commentInput---2Ptrr').contains('Пройти повторно діагностику')
-    cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').should('not.have.text','Рекомендації для клієнта');
-   // cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').should('not.have.text','Рекомендації для клієнта');
-
-    });
 
   it('34. Вкладка Історія в н/з', function(){
     cy.visit(success);
