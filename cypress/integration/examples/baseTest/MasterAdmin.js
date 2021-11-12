@@ -9,7 +9,7 @@ const cancel = 'https://'+Cypress.env('url')+'my.carbook.pro/orders/cancel';
 
 
 var date = new Date();
-//const idClient ='121043'
+//const idClient ='31039'
 const idClient =''+date.getDate()+date.getMonth()+date.getMinutes();
 var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
@@ -297,7 +297,7 @@ describe ('Base|My|Desktop|UA|', function(){
           cy.get('.styles-m__ordernLink---T-qWz').first().click({ force: true });//Нові н/з
       })
       .then(()=>{
-          cy.get('.styles-m__headerColumns---2oOX2 > :nth-child(1)').find('.ant-select-selection').contains('Пост').should('not.have.text','') 
+          cy.get('.styles-m__headerColumns---2oOX2 > :nth-child(1)').find('.ant-select-selection').contains('Оберіть пост').should('not.have.text','') 
           cy.get('.ant-form').find('.ant-select-selection-selected-value').eq(0).should('not.have.text','')
           cy.wait(2000);
           cy.get('.ant-form').find('.ant-select-selection-selected-value').eq(1).should('not.have.text','')
