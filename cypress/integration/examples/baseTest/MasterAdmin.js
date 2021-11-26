@@ -9,7 +9,7 @@ const cancel = 'https://'+Cypress.env('url')+'my.carbook.pro/orders/cancel';
 
 
 var date = new Date();
-//const idClient ='28950'
+//const idClient ='261020'
 const idClient =''+date.getDate()+date.getMonth()+date.getMinutes();
 var second = parseInt(date.getSeconds())+10
 var minute = parseInt(date.getMinutes())+10
@@ -18,7 +18,7 @@ var codeNZ =''
 
 
 
-describe ('Base|My|Desktop|UA|', function(){
+describe ('Base|Desktop|UA|', function(){
   beforeEach('User LogIn ', () => {
     cy.visit(baseUrl)
     cy.get('#login.ant-input').type(Cypress.env('Login'));  
@@ -652,7 +652,6 @@ it('13.Вкладка Роботи > Додавання Роботи ч/з Ко�
             cy.wait(1000)
             cy.log('Механік // + роботи з модалки Комплекси');
             cy.get('[data-row-key="3"] > :nth-child(6) > .ant-select > .ant-select-selection').contains('Механік').should('exist')
-
         })
     })
 
@@ -1042,33 +1041,33 @@ it('28.Ремонт (Р)', function(){
   cy.wait(2000);
 })
 
-    it('Додавання Коментарів', function(){
-        cy.visit(progress);
-        cy.get('.styles-m__logo---2zDPJ').click()
-        cy.wait(4000);
-        cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
-        cy.wait(2000);
-        cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
-        cy.log('Вибір Н/З');
-        cy.wait(4000);
-        cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
-        cy.wait(1000);
-        cy.get('.ant-input.styles-m__comment---3QjTs').clear().type('Не заляпать бампер мастилом');
-        cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').clear().type('Без царапин...'); //Стан автомобіля
-        cy.wait(2000);
-        cy.get(':nth-child(4) > .styles-m__commentInput---2Ptrr').clear().type('Замінити повітряні фільтри мотора'); 
-        cy.get(':nth-child(5) > .styles-m__commentInput---2Ptrr').clear().type('Пройти повторно діагностику');
-        cy.wait(1000);
-        cy.get('.anticon-save > svg').first().click({force: true});
-        cy.wait(4000);
-        cy.wait(4000);
-        cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
-        cy.wait(1000);
-        cy.get('.ant-input.styles-m__comment---3QjTs').should('not.have.text','Коментарі клієнта');
-        cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').should('not.have.text','Рекомендації для клієнта');
-        cy.get(':nth-child(4) > .styles-m__commentInput---2Ptrr').should('have.text','Замінити повітряні фільтри мотора'); 
-        cy.get(':nth-child(5) > .styles-m__commentInput---2Ptrr').contains('Пройти повторно діагностику')
-    });
+it('Додавання Коментарів', function(){
+    cy.visit(progress);
+    cy.get('.styles-m__logo---2zDPJ').click()
+    cy.wait(4000);
+    cy.get('.ant-input-search > .ant-input').type(idClient)//пошук
+    cy.wait(2000);
+    cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
+    cy.log('Вибір Н/З');
+    cy.wait(4000);
+    cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
+    cy.wait(1000);
+    cy.get('.ant-input.styles-m__comment---3QjTs').clear().type('Не заляпать бампер мастилом');
+    cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').clear().type('Без царапин...'); //Стан автомобіля
+    cy.wait(2000);
+    cy.get(':nth-child(4) > .styles-m__commentInput---2Ptrr').clear().type('Замінити повітряні фільтри мотора'); 
+    cy.get(':nth-child(5) > .styles-m__commentInput---2Ptrr').clear().type('Пройти повторно діагностику');
+    cy.wait(1000);
+    cy.get('.anticon-save > svg').first().click({force: true});
+    cy.wait(4000);
+    cy.wait(4000);
+    cy.get('#ОВ > .styles-m__mapChildsBlock---1oGYD > :nth-child(2) > .ant-btn').click();
+    cy.wait(1000);
+    cy.get('.ant-input.styles-m__comment---3QjTs').should('not.have.text','Коментарі клієнта');
+    cy.get(':nth-child(3) > .styles-m__commentInput---2Ptrr').should('not.have.text','Рекомендації для клієнта');
+    cy.get(':nth-child(4) > .styles-m__commentInput---2Ptrr').should('have.text','Замінити повітряні фільтри мотора'); 
+    cy.get(':nth-child(5) > .styles-m__commentInput---2Ptrr').contains('Пройти повторно діагностику')
+});
 
   it('29.Оплата і видача (ОВ)', function(){
     cy.visit(progress);
@@ -1219,4 +1218,48 @@ it('32. Перевірка завантаженних файлів', function(){
           cy.get('[data-row-key="0"] > :nth-child(2)').should('exist');
         })
   });
+
+it('39.Копія НЗ', function(){
+    cy.visit(progress);
+    cy.get('.styles-m__logo---2zDPJ').click()
+    cy.wait(4000);
+    cy.get('a.styles-m__ordernLink---T-qWz').first().invoke('text')
+    .then (text => {codeNZ = text;
+        cy.log(codeNZ)
+        const numArr = text.split('-')  //[MDR, 594, 12345]
+        cy.get('.ant-input-search > .ant-input').last().type(numArr[numArr.length-1])//пошук
+    })
+    cy.get('.styles-m__title---Nwr2X > span').should('have.text','Ремонти')
+    cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
+    cy.get('.anticon-copy').last().click({force: true})
+    cy.get('.ant-modal-confirm-body-wrapper').should('be.visible')
+    cy.get('.ant-modal-confirm-btns > .ant-btn-primary').click({force: true})
+    cy.wait(4000); 
+    cy.get('.styles-m__title---Nwr2X > span').should('have.text','Новий')  
+    cy.get('.ant-modal-close-x').last().click({force: true})
+    cy.wait(1000);
+});
+
+it('40. Видалення ппередньої копії НЗ', function(){
+    cy.visit(appointments);
+    cy.get('.styles-m__logo---2zDPJ').click()
+    cy.wait(4000);
+    cy.get('a.styles-m__ordernLink---T-qWz').first().invoke('text')
+    .then (text => {codeNZ = text;
+        cy.log(codeNZ)
+        const numArr = text.split('-')  //[MDR, 594, 12345]
+        cy.get('.ant-input-search > .ant-input').last().type(numArr[numArr.length-1])//пошук
+    })
+    cy.get('.styles-m__title---Nwr2X > span').should('have.text','Нові')
+    cy.get('a.styles-m__ordernLink---T-qWz').first().click({force: true});
+    cy.get('.anticon-delete').first().click({force: true})
+    cy.wait(1000);
+    cy.get('.ant-modal').should('be.visible')
+    cy.get('.styles-m__submit---20j0q').contains('Так').click({force: true})
+    cy.wait(3000); 
+    cy.get('.styles-m__title---Nwr2X > span').should('have.text','Відмова')  
+    cy.get('.ant-modal-close-x').last().click({force: true})
+    cy.wait(1000);
+});
+
 })
