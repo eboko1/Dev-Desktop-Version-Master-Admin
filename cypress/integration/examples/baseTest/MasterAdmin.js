@@ -1260,6 +1260,7 @@ it('40. Видалення ппередньої копії НЗ', function(){
     cy.get('.styles-m__title---Nwr2X > span').should('have.text','Відмова')  
     cy.get('.ant-modal-close-x').last().click({force: true})
     cy.wait(1000);
-});
+})
 
 })
+
