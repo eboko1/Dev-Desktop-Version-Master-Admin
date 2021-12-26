@@ -4,14 +4,6 @@ on:
   push:
     branches:
       - main
-      - test_specialist
-      - test_master
-
-      - dev_specialist    
-      - dev_master
-      
-      - prod_specialist
-      - prod_master
 jobs:
 
   desktop-master-admin-elec-linux:
@@ -26,7 +18,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           record: true
-          spec: cypress/integration/baseTest/MasterAdmin.js
+          spec: cypress/integration/examples/baseTest/MasterAdmin.js
           # edge, firefox
         env:
           # pass the Dashboard record key as an environment variable
@@ -47,7 +39,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           record: true
-          spec: cypress/integration/baseTest/shDesktopMasterAdmin.js
+          spec: cypress/integration/examples/baseTest/shDesktopMasterAdmin.js
           # edge, firefox
         env:
           # pass the Dashboard record key as an environment variable
@@ -68,7 +60,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           record: true
-          spec: cypress/integration/baseTest/shMobileMasterAdmin.js
+          spec: cypress/integration/examples/baseTest/shMobileMasterAdmin.js
           # edge, firefox
         env:
           # pass the Dashboard record key as an environment variable
