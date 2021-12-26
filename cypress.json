@@ -1,8 +1,8 @@
 {
   "viewportWidth": 1240,
   "viewportHeight": 960,
-  "//viewportWidth": 414,
-  "//viewportHeight": 736,
+  "viewportWidthMobile": 414,
+  "viewportHeightMobile": 736,
   "projectId": "kg4dsj",
   "chromeWebSecurity": false,
   

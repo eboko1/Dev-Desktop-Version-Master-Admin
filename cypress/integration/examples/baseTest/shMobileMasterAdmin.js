@@ -18,17 +18,20 @@ var mehanic=''
 
 
 describe ('Mobile|SH|Admin|UA', function(){
+ 
     beforeEach('User LogIn ', function(){
-        cy.visit(baseUrl)
-            .then(()=>{
+         cy.visit(baseUrl)
+            .then( function(){
                 cy.get('#login.ant-input').type(Cypress.env('LoginMobile'));
                 cy.get('#password').type(Cypress.env('Password')); 
         })
         cy.get('button').click()
         cy.intercept('GET', baseUrl+'/dashboard')
-        .then(()=>{
+        .then(function(){
             cy.get('.drawer-handle').click() // close
         })
+
+        cy.viewport(Cypress.env('viewportWidthMobile'), Cypress.env('viewportHeightMobile'))
     });
 
     it('Календар Завантажень', function(){
