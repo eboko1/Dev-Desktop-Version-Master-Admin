@@ -158,14 +158,14 @@ describe ('Mobile|SH|Admin|UA', function(){
 
     it('Перевірка НЗ в статусі Запису', function(){
         cy.visit(appointments)
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-input').type(idClient)   //пошук        
         })
         cy.get('.ant-select-selection').click()
         cy.get('.ant-select-dropdown-menu > :nth-child(2)').click()
         cy.wait(2000)
         cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(2)').click({ force: true }) // табка роботи в НЗ
             cy.wait(3000)
             cy.get('.styles-m__title---34B8J').contains('Запис').should('exist')
@@ -175,7 +175,7 @@ describe ('Mobile|SH|Admin|UA', function(){
 
     it('Додавання Робіт', function(){
         cy.visit(approve)
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-input').type(idClient)   //пошук
           
             cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
@@ -187,7 +187,7 @@ describe ('Mobile|SH|Admin|UA', function(){
                 })
              })
             cy.log(mehanic)
-            .then(()=>{
+            .then(function(){
                 cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(2)').click({ force: true }) // табка роботи в НЗ
             })
             cy.get('button').contains('Додати').click({ force: true })// Додати
@@ -209,7 +209,7 @@ describe ('Mobile|SH|Admin|UA', function(){
 
     it('Додавання Робіт через Комплекси', function(){
         cy.visit(approve)
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-input').type(idClient)   //пошук
             cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
             cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(2)').click({ force: true })
@@ -231,11 +231,11 @@ describe ('Mobile|SH|Admin|UA', function(){
 
     it('Перевірка відображення працівника та найменування Роботи', function(){
         cy.visit(approve)
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-input').type(idClient)   //пошук        
         })
         cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(2)').click({ force: true }) // табка роботи в НЗ
         })
         cy.get('.ant-tabs-tabpane-active > .ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-content > .ant-table-body > table > .ant-table-tbody > [data-row-key="0"] > :nth-child(1)').eq(0).click({ force: true })
@@ -254,11 +254,11 @@ describe ('Mobile|SH|Admin|UA', function(){
 
         it('Перевірка статуса НЗ / Ремонт', function(){
             cy.visit(progress)
-            .then(()=>{
+            .then(function(){
                 cy.get('.ant-input').type(idClient)   //пошук        
             })
             cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
-            .then(()=>{
+            .then(function(){
                 cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(2)').click({ force: true }) // табка роботи в НЗ
                 cy.get('.styles-m__title---34B8J').contains('Ремонт').should('exist')
             })
@@ -266,7 +266,7 @@ describe ('Mobile|SH|Admin|UA', function(){
 
     it('Додавання Запчастин', function(){
         cy.visit(progress)
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-input').type(idClient)   //пошук
         })
         cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
@@ -287,7 +287,7 @@ describe ('Mobile|SH|Admin|UA', function(){
 
     it('Видалення Запчастин', function(){
         cy.visit(progress)
-        .then(()=>{
+        .then(function(){
           cy.get('.ant-input').type(idClient)   //пошук
         })
         cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
@@ -312,11 +312,11 @@ describe ('Mobile|SH|Admin|UA', function(){
 
     it('Відображення табки Історії ремонту', function(){
         cy.visit(progress)
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-input').type(idClient)   //пошук        
         })
         cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(4)').click({ force: true }) // табка роботи в НЗ
             cy.get('.ant-tabs-tabpane-active').should('exist')
             cy.wait(2000)
@@ -325,11 +325,11 @@ describe ('Mobile|SH|Admin|UA', function(){
 
     it('Перевірка відкриття Ордера / іконка $', function(){
         cy.visit(progress)
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-input').type(idClient)   //пошук        
         })
         cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
-        .then(()=>{
+        .then(function(){
             cy.wait(3000)
             cy.get('.styles-m__headerContorlsShowIcon---6gTgk > .anticon > svg').click()
             cy.wait(3000)
@@ -342,11 +342,11 @@ describe ('Mobile|SH|Admin|UA', function(){
 
     it('Завершення ремонту, оплата', function(){
         cy.visit(progress)
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-input').type(idClient)   //пошук        
         })
         cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
-        .then(()=>{
+        .then(function(){
             cy.wait(3000)
             cy.get('.styles-m__headerContorlsShowIcon---6gTgk > .anticon > svg').click()
             cy.wait(3000)
@@ -407,11 +407,11 @@ describe ('Mobile|SH|Admin|UA', function(){
     // додати перевірка кнопок копіювання
     it('Створення копії НЗ', function(){
         cy.visit(progress)
-        .then(()=>{
+        .then(function(){
             cy.get('.ant-input').type(idClient)   //пошук        
         })
         cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
-        .then(()=>{
+        .then(function(){
             cy.wait(3000)
             cy.get('.styles-m__headerContorlsShowIcon---6gTgk > .anticon > svg').click()
             cy.wait(3000)
