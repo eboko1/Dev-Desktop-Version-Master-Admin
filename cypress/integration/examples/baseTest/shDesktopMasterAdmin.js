@@ -21,7 +21,7 @@ var codeNZ =''
 describe ('SH|Desktop|Master|Admin|UA', function(){
   beforeEach('User LogIn ', function() {
     cy.visit(baseUrl)
-    cy.get('#login.ant-input').type(Cypress.env('Login'));  
+    cy.get('#login.ant-input').type(Cypress.env('LoginSH'));  
     cy.get('#password').type(Cypress.env('Password'));
     cy.get('button').click()
     cy.intercept('GET', baseUrl+'/dashboard')

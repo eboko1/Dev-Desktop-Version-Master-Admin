@@ -22,7 +22,7 @@ describe ('Mobile|SH|Admin|UA', function(){
     beforeEach('User LogIn ', function(){
          cy.visit(baseUrl)
             .then( function(){
-                cy.get('#login.ant-input').type(Cypress.env('LoginMobile'));
+                cy.get('#login.ant-input').type(Cypress.env('LoginSH'));
                 cy.get('#password').type(Cypress.env('Password')); 
         })
         cy.get('button').click()
