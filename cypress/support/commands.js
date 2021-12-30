@@ -25,3 +25,19 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (baseUrl,username, password) => {
+   // cy.session([baseUrl,username, password], () => {
+        cy.visit(baseUrl)
+        cy.get('#login.ant-input').type(username)
+        cy.get('#password').type(password)
+        cy.get('button').click()
+        cy.url().should('contain', '/dashboard')
+    ///})
+})
+//   cy.visit(baseUrl)
+//     cy.get('#login.ant-input').type(Cypress.env('Login'));  
+//     cy.get('#password').type(Cypress.env('Password'));
+//     cy.get('button').click()
+//     cy.intercept('GET', baseUrl+'/dashboard')
+//     cy.get('.styles-m__title---Nwr2X').contains('Календар Завантаження');
