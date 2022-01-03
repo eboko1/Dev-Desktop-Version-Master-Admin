@@ -20,6 +20,7 @@ var mehanic=''
 describe ('Mobile|SH|Admin|UA', function(){
  
     beforeEach('User LogIn ', function(){
+        cy.viewport('iphone-x')
          cy.visit(baseUrl)
             .then( function(){
                 cy.get('#login.ant-input').type(Cypress.env('LoginSH'));
@@ -31,7 +32,7 @@ describe ('Mobile|SH|Admin|UA', function(){
             cy.get('.drawer-handle').click() // close
         })
 
-        cy.viewport(Cypress.env('viewportWidthMobile'), Cypress.env('viewportHeightMobile'))
+       
     });
 
     it('Календар Завантажень', function(){

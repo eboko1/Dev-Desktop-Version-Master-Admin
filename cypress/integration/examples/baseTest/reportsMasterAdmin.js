@@ -11,6 +11,7 @@ var date = new Date();
 
 describe ('Reports|Master|Admin|Desktop|UA|', function(){
   beforeEach('User LogIn ', function(){
+    cy.viewport(1240,960)  
     cy.login(baseUrl, Cypress.env('Login'), Cypress.env('Password'))
   });
 

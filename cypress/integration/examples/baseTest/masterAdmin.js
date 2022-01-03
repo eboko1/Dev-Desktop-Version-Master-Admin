@@ -20,6 +20,7 @@ var codeNZ =''
 
 describe ('Master|Admin|Desktop|UA|', function(){
   beforeEach('User LogIn ', function(){
+    cy.viewport(1240,960)  
     cy.visit(baseUrl)
     cy.get('#login.ant-input').type(Cypress.env('Login'));  
     cy.get('#password').type(Cypress.env('Password'));
