@@ -2,9 +2,10 @@
 
 import DirectoriesPage from '../../../support/pageObject/directoriesPage';
 
+const directiries = new DirectoriesPage();
 const baseUrl = 'https://'+Cypress.env('url')+'my.carbook.pro';
 
-const directiries = new DirectoriesPage();
+
 
 describe ('Directories & Settings|Master|Admin|Desktop|UA|', function(){
   beforeEach('User LogIn ', function(){
@@ -80,12 +81,7 @@ describe ('Directories & Settings|Master|Admin|Desktop|UA|', function(){
       directiries.checkButton(nameButton);
     });
 
-    it('НЗ. Комплекси', function(){
-      var nameButton = 'Мої нормативи'; 
-      directiries.checkButton(nameButton);
-    });
-
-    // // it('НЗ. Мої нормативи', function(){
+    // // it('НЗ. Комплекси', function(){
     // //   var nameButton = 'Комплекси';
     // //    
     // //   directiries.checkButton(nameButton);

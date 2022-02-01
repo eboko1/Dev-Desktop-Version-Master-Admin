@@ -13,6 +13,7 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
   beforeEach('User LogIn ', function(){
     cy.viewport(1240,960)  
     cy.login(baseUrl, Cypress.env('Login'), Cypress.env('Password'))
+    cy.visit(baseUrl+'/reports')
   });
 
     it('Товари. Універсальний', function(){
@@ -26,7 +27,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Товари. Залишки по товарам', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Залишки по товарам').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -36,7 +36,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Товари. Залишки по складам', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Залишки по складам').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -46,7 +45,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Товари. Залишки по коміркам', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Залишки по коміркам').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -56,7 +54,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Товари. Рух по товару', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Рух по товару').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -66,7 +63,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Товари. Інвентаризація', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Інвентаризація').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -76,7 +72,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Товари. Закупівлі за пост.', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Закупівлі за пост.').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -98,7 +93,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     // })
 
     it('НЗ. Універсальний по н/з', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Універсальний по н/з').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -108,7 +102,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Універсальний по роботам', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Універсальний по роботам').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -118,7 +111,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Універсальний по з/ч', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Універсальний по з/ч').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -128,7 +120,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Зведений по н/з', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Зведений по н/з').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -138,7 +129,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Звіт по продажі по днях', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('По днях').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -148,7 +138,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Звіт по продажі по працівникам', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('По працівникам').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -158,7 +147,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Звіт по продажі за статусами', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('За статусами').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -168,7 +156,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Звіт по продажі по клієнтах', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('За клієнтами').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -178,7 +165,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Звіт по продажі по а/м', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('За автомобілями').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -188,7 +174,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Звіт по продажі за постами', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('За постами').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -198,7 +183,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Звіт по продажі по роботам', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Роботи').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -208,7 +192,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Звіт по продажі по групам товарів', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Групи товарів').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -218,7 +201,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Звіт по продажі по брендам', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Бренди').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -228,7 +210,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('НЗ. Звіт по продажі по товарах', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Товари').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -238,7 +219,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Бухгалтерія. Універсальний по оплатам', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Універсальний по оплатам').click({force: true})
          cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -248,7 +228,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Бухгалтерія. Звіт по дебіторці', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Дебіторка').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -258,7 +237,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Бухгалтерія. Звіт по кредиторці', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Кредиторка').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -268,7 +246,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Бухгалтерія. Звіт по касам', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Каси').click({force: true})
         cy.wait(1000)
         cy.get('.ant-modal-header').should('exist')
@@ -278,7 +255,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Бухгалтерія. Грошовий потік', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Грошовий потік').click({force: true})
         cy.wait(1000)
         //// cy.get('.ant-modal-header').should('exist')
@@ -288,7 +264,6 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     })
 
     it('Бухгалтерія. Звіт по продажі по товарах', function(){
-        cy.visit(baseUrl+'/reports')
         cy.get('.ant-btn').contains('Зарплати').click({force: true})
         cy.wait(1000)
         ////cy.get('.ant-modal-header').should('have.text', 'Звіт по продажі по товарах')

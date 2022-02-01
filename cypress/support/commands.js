@@ -32,7 +32,6 @@ Cypress.Commands.add('login', (baseUrl,username, password) => {
         cy.get('#login.ant-input').type(username)
         cy.get('#password').type(password)
         cy.get('button').click()
-        cy.url().should('contain', '/dashboard')
     ///})
 })
 //   cy.visit(baseUrl)
