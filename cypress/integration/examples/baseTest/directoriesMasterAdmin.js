@@ -12,6 +12,7 @@ describe ('Directories & Settings|Master|Admin|Desktop|UA|', function(){
     cy.viewport(1240,960)  
     cy.login(baseUrl, Cypress.env('Login'), Cypress.env('Password'))
     cy.visit(baseUrl+'/directories');
+    cy.get('img').eq(0).click({force: true}) //menu
   });
 
     it('Контрагенти. Клієнти', function(){

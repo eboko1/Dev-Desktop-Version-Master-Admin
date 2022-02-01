@@ -14,6 +14,7 @@ describe ('Reports|Master|Admin|Desktop|UA|', function(){
     cy.viewport(1240,960)  
     cy.login(baseUrl, Cypress.env('Login'), Cypress.env('Password'))
     cy.visit(baseUrl+'/reports')
+    cy.get('img').eq(0).click({force: true}) //menu
   });
 
     it('Товари. Універсальний', function(){
