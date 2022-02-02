@@ -28,7 +28,6 @@ describe ('Master|Admin|Desktop|UA|', function(){
         cy.intercept('GET', baseUrl+'/dashboard')
         cy.get('h1 > span').contains('Календар Завантаження');
     })
-  
   });
 
   it('1.Профіль вибір українського інтерфейсу', function(){
