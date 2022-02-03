@@ -21,12 +21,23 @@ describe ('Mobile|SH|Admin|UA', function(){
  
     beforeEach('User LogIn ', function(){
         cy.viewport('iphone-x')
-         cy.visit(baseUrl)
+        if (Cypress.env('url') === 'dev-'){
+            cy.visit(baseUrl)
             .then( function(){
                 cy.get('#login.ant-input').type(Cypress.env('LoginSH'));
                 cy.get('#password').type(Cypress.env('Password')); 
-        })
-        cy.get('button').click()
+            })
+            cy.get('button').click()
+        } else {
+            cy.visit(baseUrl)
+            .then( function(){
+                cy.get('#login.ant-input').type(Cypress.env('LoginSA'));
+                cy.get('#password').type(Cypress.env('PasswordSA')); 
+            })
+            cy.get('button').click()
+            cy.wait(4000)
+        }
+       
         cy.intercept('GET', baseUrl+'/dashboard')
         .then(function(){
             cy.get('.drawer-handle').click() // close
@@ -37,10 +48,11 @@ describe ('Mobile|SH|Admin|UA', function(){
 
     it('Календар Завантажень', function(){
         cy.get('.withScroll').should('exist');
-        cy.get('.styles-m__title---34B8J > span').should('exist');
+        cy.get('h1 > span').should('exist');
     })
 
    it('Створення Клієнта '+idClient, function(){
+        //////cy.visit(baseUrl+'/add')
         cy.get(':nth-child(1) > .sc-jtRfpW > .sc-gxMtzJ > :nth-child(6) > span > .anticon > svg').first().click({ force: true })
         cy.wait(2000)
         cy.get('.ant-btn').eq(3).click({ force: true })
@@ -169,7 +181,7 @@ describe ('Mobile|SH|Admin|UA', function(){
         .then(function(){
             cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(2)').click({ force: true }) // табка роботи в НЗ
             cy.wait(3000)
-            cy.get('.styles-m__title---34B8J').contains('Запис').should('exist')
+            cy.get('h1').contains('Запис').should('exist')
             cy.wait(2000)
         })
     })
@@ -261,7 +273,7 @@ describe ('Mobile|SH|Admin|UA', function(){
             cy.get('.styles-m__ordernLink---2V9V3').first().click({ force: true })
             .then(function(){
                 cy.get('.ant-tabs-nav > :nth-child(1) > :nth-child(2)').click({ force: true }) // табка роботи в НЗ
-                cy.get('.styles-m__title---34B8J').contains('Ремонт').should('exist')
+                cy.get('h1').contains('Ремонт').should('exist')
             })
         })
 
@@ -418,7 +430,7 @@ describe ('Mobile|SH|Admin|UA', function(){
             cy.wait(3000)
             cy.get('.styles-m__hiddenHeaderContorls---1N6ed > .anticon-copy').click()
             cy.wait(3000)
-            cy.get('.styles-m__title---34B8J > span').should('have.text','Новий')
+            cy.get('h1 > span').should('have.text','Новий')
         })
           
     })

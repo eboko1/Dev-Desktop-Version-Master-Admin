@@ -23,8 +23,8 @@ describe ('SH|Desktop|Master|Admin|UA', function(){
     cy.viewport(1240,960)  
     cy.login(baseUrl, Cypress.env('LoginSH'), Cypress.env('Password'))
     cy.intercept('GET', baseUrl+'/dashboard')
-    cy.get('.styles-m__logo---1OVEG').click()
-    cy.get('.styles-m__header---1R4ZA').contains('Календар Завантаження');
+    cy.get('img').eq(0).click({force: true}) //menu
+    cy.get('h1').contains('Календар Завантаження');
   });
 
   it('Профіль вибір українського інтерфейсу', function(){
