@@ -4,7 +4,7 @@
   
   
   "env": {
-    "url":"",
+    "url":"dev-",
     "Login":"my@admin.com",
     "Password":"456789",
     "PasswordSA":"123456",
