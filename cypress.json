@@ -2,6 +2,7 @@
   "projectId": "kg4dsj",
   "chromeWebSecurity": false,
   
+  
   "env": {
     "url":"",
     "Login":"my@admin.com",
